@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
+import rewritePublicAssets from './src/plugins/rewrite-public-assets.mjs';
 
 const site = process.env.SITE_URL || 'https://blade-hq.github.io';
 const base = process.env.BASE_PATH || '/public-docs';
@@ -8,6 +9,9 @@ const base = process.env.BASE_PATH || '/public-docs';
 export default defineConfig({
   site,
   base,
+  markdown: {
+    rehypePlugins: [[rewritePublicAssets, { base }]],
+  },
   integrations: [
     starlight({
       title: 'Blade Agent',
