@@ -1,8 +1,7 @@
 ---
 title: "Vue 接入"
+description: Vue 接入的配置、使用步骤、接口行为和排查说明。
 ---
-
-# Vue 接入
 
 :::note 完整示例工程
 [下载 examples-vue.zip](../../../downloads/examples-vue.zip) — Vite + Vue 3 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
@@ -15,7 +14,7 @@ Vue 不能直接使用 `ChatView`（React 组件），需要用 `@blade-hq/agent
 版本号需和 Blade Agent 后端一致（[如何查看](../../concepts/#快速开始)）：
 
 ```bash
-# 将 <version> 替换为后端版本号，如 1.0.10
+# 将 <version> 替换为后端版本号，如 2608.0.4
 pnpm add @blade-hq/agent-kit@<version> vue@^3.5.13
 ```
 

@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import { compareReleaseEntries } from '../lib/content';
+
+const base = import.meta.env.BASE_URL;
+const releases = (await getCollection('docs'))
+  .filter((entry) => entry.data.contentType === 'changelog-release' && !entry.data.draft)
+  .sort(compareReleaseEntries);
+const stable = releases.find((entry) => entry.data.channel === 'stable');
+const beta = releases.find((entry) => entry.data.channel === 'beta');
+const formatDate = (date?: Date) => date
+  ? new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' }).format(date).replaceAll('/', '-')
+  : '';
+const pathFor = (id?: string) => id ? `${base}${id.replace(/index$/, '').replace(/\/$/, '')}/` : `${base}changelog/`;
+---
+
+<div class="version-board" aria-label="当前版本">
+  {stable && <a href={pathFor(stable.id)}><span>当前正式版</span><strong>{stable.data.title}</strong><time>{formatDate(stable.data.date)}</time><small>升级说明 →</small></a>}
+  {beta && <a href={pathFor(beta.id)}><span>最新预发布</span><strong>{beta.data.title}</strong><time>{formatDate(beta.data.date)}</time><small>{beta.data.breaking ? '含破坏性变更 →' : '版本说明 →'}</small></a>}
+</div>

@@ -1,8 +1,7 @@
 ---
 title: "聊天 UI 与自渲染"
+description: 聊天 UI 与自渲染的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 聊天 UI 与自渲染
 
 ## ChatView 组件
 

@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('docs'))
+  .filter((entry) => entry.data.contentType === 'blog-post' && !entry.data.draft)
+  .sort((a, b) => (b.data.date?.getTime() || 0) - (a.data.date?.getTime() || 0));
+
+const pathFor = (id: string) => `${base}${id.replace(/index$/, '').replace(/\/$/, '')}/`;
+const formatDate = (date?: Date) => date
+  ? new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' }).format(date).replaceAll('/', '-')
+  : '';
+const minutesFor = (body?: string) => Math.max(1, Math.ceil((body?.replace(/\s+/g, '').length || 0) / 400));
+---
+
+<div class="blog-toolbar"><a href={`${base}blog/rss.xml`}>订阅 RSS</a></div>
+<ol class="blog-list">
+  {posts.map((post) => (
+    <li>
+      <a href={pathFor(post.id)}>
+        <div class="blog-meta">
+          <time datetime={post.data.date?.toISOString()}>{formatDate(post.data.date)}</time>
+          <span>{post.data.author}</span>
+          <span>{minutesFor(post.body)} 分钟</span>
+          {post.data.tags?.map((tag) => <span>{tag}</span>)}
+        </div>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.summary || post.data.description}</p>
+      </a>
+    </li>
+  ))}
+</ol>

@@ -1,35 +1,64 @@
 ---
 title: v2608.0.3
-description: 智能应用开发、SDK、会话记忆和浏览器能力集中更新。
+description: 软件工厂、SDK、会话控制台、共享记忆、浏览器和检索的集中更新。
+contentType: changelog-release
+version: "2608.0.3"
+line: "2608"
+date: 2026-08-12
+channel: stable
+breaking: false
+requires: []
+range: "v2608.0.1..v2608.0.3"
+commits: 28
+refs: ["#1685", "#1680", "#1675", "#1676", "#1677", "#1657", "#1672", "#1670", "#1652", "#1662", "#1658", "#1665", "#1674", "#1669", "#1666", "#1668", "#1667", "#1659", "#1639", "#1641", "#1638", "#1642", "#1656", "#1653", "#1650", "#1640", "#1643", "#1647"]
+summary: 28 个提交，加入会话控制台与回放，并更新共享记忆、浏览器镜像、SDK 和 Exa 检索。
 sidebar:
   hidden: true
 ---
 
-<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026.08.12</time></div>
+<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026-08-12</time><span class="release-risk">配置有变化</span></div>
 
-<p class="article-deck">这是 2608 交付线的一次集中更新，覆盖软件工厂、接入 SDK、会话记忆和浏览器执行链。</p>
+<p class="article-deck">该版本与 <code>v2608.0.3-beta.1</code> 是同一份代码。相对上一个主线正式版 <code>v2608.0.1</code> 共 28 个提交；<code>v2608.0.2</code> 是独立回移版本，其修复内容已在 main 线上。</p>
 
-## 智能应用开发
+## 影响面
 
-新增“开发智能应用”技能，三种接法各带一份可运行模板；`frontend-design` 成为内置技能，沙盒预装离线网页字体。模式 3 改用官方聊天组件，模型密钥可以通过登录自动配置。
+浏览器镜像总开关已删除，旧配置不再生效；联网检索切换到 Exa，原环境变量配置需要在管理界面重新确认。接口协议没有破坏性变化。
 
-<img class="article-shot" src="../../images/releases/v2610.0.0-beta.0/software-factory.png" alt="软件工厂项目创建页面" />
+## 变更
 
-## SDK 与会话
+### 智能应用开发与 SDK
 
-`agent-react` 聊天组件完成分层，增加标准 OpenAI 协议的纯 LLM 模式。React 与 Python SDK 补上零配置接入方法，会话回放重新回到界面并开放给 SDK。
+新增「开发智能应用」Skill 和三种可运行模板，`frontend-design` 成为内置 Skill。React 聊天组件分层并加入标准 OpenAI 协议的纯 LLM 模式；JavaScript 与 Python SDK 补齐零配置接入方法，会话回放重新进入 SDK 和界面。
 
-共享记忆可以按用户开启或关闭，默认不向其他用户开放。会话小结会带上本轮产生的文件和网址；长任务结束后，界面会提醒把稳定流程沉淀成 Skill。
+### 会话、记忆与权限
 
-## 浏览器、技能和检索
+新增会话控制台；共享记忆可按用户启停，默认不向他人开放。会话小结带上文件和网址产物，历史回溯和导出入口恢复。被吊销的 PAT 可以重新补发，普通用户也能查看模型服务地址。（#1676、#1677、#1657、#1658）
 
-- 浏览器镜像默认启用，沙盒新标签页重新设计；带宽按观看人数分配。
-- Chrome CLI 增加原生 `select` 命令，修复日期输入框和隐藏元素等待问题。
-- 联网检索切换到 Exa，配置从环境变量移到管理界面。
+### 浏览器、技能与检索
+
+- 浏览器镜像默认启用；新标签页、标签栏、带宽和录屏清晰度调整。
+- Chrome CLI 加入原生 `select`，修复日期输入、隐藏元素等待和浏览器扩展鉴权。
 - `browser` / `browser-control` 更名为 `builtin-browser` / `browser-extension`。
+- 联网检索改用 Exa，配置入口移到界面。
 
-## 升级注意
+### 界面和运行时修复
 
-浏览器镜像总开关已删除，旧配置不会继续生效。检索配置需要在界面中重新确认。该版本没有接口协议破坏性变化，接入方仍应按 `GET /api/version` 返回值固定 SDK 版本。
+侧栏折叠、拖宽把手、看板对话归属和流式滚动做了整理；预览页不再因为选择界面内容而切代理。PocketBase 的部署指导改为默认单容器。
 
-[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2608.0.3)
+## 前置条件
+
+无新增组件版本要求。请记录原有联网检索配置，升级后在界面中重新填写并测试。
+
+## 升级步骤
+
+1. 将主应用镜像改为 `v2608.0.3` 后重启。
+2. 安装 `2608.0.3` 版 JavaScript 或 Python SDK。
+3. 在管理界面确认 Exa 检索配置；沙箱镜像无需更新。
+
+## 回滚方式
+
+回退到 `v2608.0.1` 镜像与 SDK。本版没有数据结构迁移。若此前使用 `v2608.0.2` 的默认令牌修复，回滚前应确认目标版本仍满足当前 Blade OAuth 部署要求。
+
+## 已知限制
+
+内置 `user-browser` Skill 的 `SKILL.md` 仍超过 Read 的 20000 字符阈值，智能体直接读取时只能看到文件过大的提示。

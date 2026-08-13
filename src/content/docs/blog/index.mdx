@@ -1,30 +1,16 @@
 ---
 title: Blog
-description: Blade Agent 的产品思考、工程实践和幕后细节
-template: splash
+description: Blade Agent 的设计决策、工程实现、失败复盘和仍未解决的问题。
+contentType: blog-index
 next: false
-hero:
-  title: Blog
-  tagline: 我们怎样做智能体、软件工厂和可控的自动化，也记录那些没按计划工作的部分。
+lastUpdated: false
 ---
 
-<div class="section-kicker">LATEST STORY</div>
+import BlogIndex from '../../../components/BlogIndex.astro';
 
-<a class="feature-story" href="./introducing-blade-agent/">
-  <div class="feature-story__copy">
-    <time datetime="2026-08-13">2026.08.13 · 8 分钟</time>
-    <h2>Blade Agent：别再让 AI 只负责出主意</h2>
-    <p>聊天模型很擅长解释“应该怎么做”，但真正的工作通常从这句话之后才开始。Blade Agent 试着补上执行这一段。</p>
-    <span>阅读全文 →</span>
-  </div>
-  <div class="feature-story__visual" aria-hidden="true">
-    <div class="terminal-card"><code>$ blade agent run</code><b>reading files</b><b>opening browser</b><b>shipping result</b></div>
-  </div>
-</a>
 
-## 接下来会写什么
+这里写 Blade Agent 的产品与工程判断，包括为什么这样设计、哪些做法试过但没用，以及目前还卡在哪里。功能公告放在[更新日志](../changelog/)，操作步骤放在[使用文档](../docs/overview/)。
 
-<div class="note-grid">
-  <article><small>ENGINEERING</small><h3>浏览器不是一个工具调用</h3><p>为什么点击成功不等于任务完成，以及我们怎样处理登录态、下载和页面变化。</p></article>
-  <article><small>PRODUCT</small><h3>软件工厂里的“完成”是什么</h3><p>代码生成只是中间步骤。预览、核对、修改和上线才决定一个应用能不能用。</p></article>
-</div>
+文章不按发布节奏凑数。没有代码、日志、配置、数据或可复查时间线的稿件不发。
+
+<BlogIndex />

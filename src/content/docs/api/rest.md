@@ -1,8 +1,7 @@
 ---
 title: "REST API 接口"
+description: REST API 接口的配置、使用步骤、接口行为和排查说明。
 ---
-
-# REST API 接口
 
 基础路径：`/api`  
 认证：`Authorization: Bearer sk-blade-v3-...`
@@ -188,6 +187,19 @@ title: "REST API 接口"
 ---
 
 ## Health & Configuration
+
+### GET `/api/version`
+
+无需鉴权。返回镜像注入的 Blade Agent 版本和最低 SDK 断点。
+
+```json
+{
+  "version": "2608.0.4",
+  "min_sdk": "1.1.1"
+}
+```
+
+接入方应按 `version` 安装同版本 SDK。`min_sdk` 只表示协议下限。
 
 ### GET `/api/health`
 

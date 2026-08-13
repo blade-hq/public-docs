@@ -1,39 +1,48 @@
 ---
-title: Blade Agent
-description: Blade Agent 使用、开发、接入与版本动态
-template: splash
+title: Blade Agent 文档
+description: Blade Agent 的使用、开发、接入和部署入口，以及当前正式版和预发布版本状态。
+contentType: home
+head:
+  - tag: title
+    content: Blade Agent 文档
 next: false
-hero:
-  title: 把任务交给一个真正能动手的智能体
-  tagline: Blade Agent 不止回答问题。它能读文件、操作浏览器、调用业务技能，也能从一句需求开始搭出可运行的软件。
-  actions:
-    - text: 开始使用
-      link: ./guide/getting-started/
-      icon: right-arrow
-    - text: Blade Agent 是什么
-      link: ./blog/introducing-blade-agent/
-      variant: minimal
+lastUpdated: false
 ---
 
-<div class="home-rail" aria-label="网站栏目">
-  <a href="./guide/getting-started/"><span>01</span><strong>使用文档</strong><small>从第一次对话到私有化部署</small></a>
-  <a href="./changelog/"><span>02</span><strong>更新日志</strong><small>跟踪正式版与 beta 版本</small></a>
-  <a href="./blog/"><span>03</span><strong>Blog</strong><small>产品思考、实践和幕后细节</small></a>
+import LatestVersions from '../../components/LatestVersions.astro';
+
+
+Blade Agent 是一个可私有化部署的智能体运行时。它在沙箱里执行命令、驱动浏览器、调用已注册的技能，并通过 REST 与 Socket.IO 把会话、文件和工具能力开放给其他应用。
+
+这套文档说明怎么部署和使用 Blade Agent，也覆盖智能体开发、SDK 接入、接口参考与运维。想了解设计取舍，请看 [Blog](./blog/)；想判断是否该升级，请看 [更新日志](./changelog/)。
+
+## 当前版本
+
+<LatestVersions />
+
+## 从这里开始
+
+<div class="intent-grid">
+  <article>
+    <h2>先把服务跑起来</h2>
+    <p>确认服务依赖、端口与启动顺序，然后完成第一次登录和对话。</p>
+    <a href="./ops/docker/">Docker 部署 →</a>
+    <a href="./guide/getting-started/">快速开始 →</a>
+  </article>
+  <article>
+    <h2>接进自己的系统</h2>
+    <p>用 React、Vue、Python SDK，或直接调用 REST 与 Socket.IO 接口。</p>
+    <a href="./integration/concepts/">接入核心概念 →</a>
+    <a href="./api/overview/">API 参考 →</a>
+  </article>
+  <article>
+    <h2>扩展智能体能力</h2>
+    <p>编写 Skill、业务角色和 Solution，并在运行环境里验证它们。</p>
+    <a href="./agent-dev/concepts/">智能体开发概念 →</a>
+    <a href="./agent-dev/skill/skill-md/">SKILL.md 规范 →</a>
+  </article>
 </div>
 
-## 不是聊天框的另一种皮肤
+## 评估部署前先看
 
-Blade Agent 的工作对象是你的文件、网页和系统。它会把任务拆开，在沙盒里执行命令，必要时打开浏览器核对结果，再把可下载的文件、代码或网址交回来。你能看到它做了什么，也能在关键步骤叫停或改方向。
-
-<div class="capability-grid">
-  <article><span>WORK</span><h3>让智能体接手完整任务</h3><p>上传资料，指定目标。长任务会拆分执行，完成后给出结果和产物，而不是只留下一段建议。</p></article>
-  <article><span>BUILD</span><h3>从一句话开始做软件</h3><p>软件工厂把需求、文件和 Git 项目接到同一条开发链路，前端、后端和智能体能力可以一起生成。</p></article>
-  <article><span>CONNECT</span><h3>把能力接进现有产品</h3><p>使用 React、Vue、Python SDK 或 REST / WebSocket API，把聊天、会话、文件和技能能力嵌入自己的应用。</p></article>
-  <article><span>OWN</span><h3>部署在自己的环境里</h3><p>模型、沙盒、OAuth、监控和数据路径都能配置。文档覆盖单机、Docker 和盒子环境。</p></article>
-</div>
-
-<div class="release-strip">
-  <div><span class="status-dot"></span><small>最新预发布</small><strong>v2610.0.0-beta.1</strong></div>
-  <p>软件工厂模板接入用户体系，新增全局搜索、用户偏好上下文和轻量渲染。</p>
-  <a href="./changelog/v2610-0-0-beta-1/">查看版本说明 →</a>
-</div>
+[架构与端口](./docs/overview/#架构与端口)列出了 Blade OS、Blade Agent、Blade OAuth、Skill Registry、LLM Gateway、Gitea 和沙箱之间的关系；[能力边界](./docs/overview/#能力边界)说明哪些事情仍需人工确认，哪些能力取决于外部系统。

@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "pnpm validate:content && astro check && astro build && pnpm validate:build",
     "preview": "astro preview --host 0.0.0.0",
-    "check": "astro check"
+    "check": "astro check",
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:build": "node scripts/validate-build.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

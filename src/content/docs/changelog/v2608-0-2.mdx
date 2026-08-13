@@ -1,0 +1,61 @@
+---
+title: v2608.0.2
+description: 修复默认用户令牌、浏览器休眠重连、模型空响应和技能快照问题。
+contentType: changelog-release
+version: "2608.0.2"
+line: "2608"
+date: 2026-08-11
+channel: stable
+breaking: false
+requires:
+  - name: Blade OAuth
+    note: 必须提供 GET /api/v1/pat/v3/default
+range: "v2608.0.1..v2608.0.2"
+commits: 1
+refs: ["#1655"]
+summary: 回移压测确认的修复；升级前必须确认 Blade OAuth 提供默认用户令牌接口。
+sidebar:
+  hidden: true
+---
+
+<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026-08-11</time><span class="release-risk">需同步 Blade OAuth</span></div>
+
+<p class="article-deck">这个正式版与已验证的 <code>v2608.0.2-beta.1</code> 是同一份代码，集中回移了压测中确认的四组修复。</p>
+
+## 部署前必读
+
+Blade OAuth 必须提供 `GET /api/v1/pat/v3/default`。缺少该接口时，用户令牌取不到，沙箱内 `blade` 命令没有凭据，SDK 授权兑换也会失败，而且界面未必给出明确错误。
+
+## 变更
+
+### 默认用户令牌
+
+登录、SDK 授权和浏览器扩展授权不再反复签发新令牌，而是读取每个用户唯一的默认令牌；五分钟内不会重复请求。系统管理的令牌在「我的令牌」中只读，不能重命名或删除。
+
+### 浏览器、模型与技能快照
+
+- 持久沙箱被回收后，浏览器镜像会显示休眠状态并提供重新连接，不再轮询旧端口。
+- 模型连续空响应时不再关闭管理员配置的全局启用状态。
+- 内置方案的技能快照校验失败时会自动补齐，存量会话不再因快照损坏而无法打开。
+
+## 内部变更
+
+数据库迁移 `c5d6e7f8a9b0` 为 `user_api_keys` 增加 `managed` 列；SQLite 存量库也会补列。（#1655）
+
+## 前置条件
+
+确认 Blade OAuth 的默认令牌接口可用。无需更新沙箱镜像，本版继续使用 `sandbox-v0.0.30`。
+
+## 升级步骤
+
+1. 请求 Blade OAuth 的 `GET /api/v1/pat/v3/default`，确认接口存在。
+2. 将 Blade Agent 镜像改为 `v2608.0.2` 并重启，数据库迁移会自动执行。
+3. 不要清理数据库或工作区。
+
+## 回滚方式
+
+切回 `v2608.0.1`。新增的 `managed` 列不会影响旧版本，不必回滚数据库。
+
+## 已知限制
+
+如果用户已有令牌数量达到上限，系统令牌只能在内存中生效；服务重启后会再次向 Blade OAuth 同步。

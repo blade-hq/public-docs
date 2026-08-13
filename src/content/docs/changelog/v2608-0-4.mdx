@@ -1,26 +1,53 @@
 ---
 title: v2608.0.4
-description: Chrome CLI 增加上传、下载、悬停和后退，改善浏览器与软件工厂体验。
+description: Chrome CLI 增加上传、下载、悬停和后退，并修复录屏、预览焦点和模型目录。
+contentType: changelog-release
+version: "2608.0.4"
+line: "2608"
+date: 2026-08-12
+channel: stable
+breaking: false
+requires: []
+range: "v2608.0.3..v2608.0.4"
+commits: 5
+refs: ["#1686", "#1691", "#1688", "#1690", "#1693"]
+summary: Chrome CLI 补齐上传、下载、悬停和后退；录屏、软件工厂预览和直连模型配置更稳定。
 sidebar:
   hidden: true
 ---
 
-<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026.08.12</time></div>
+<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026-08-12</time></div>
 
-<p class="article-deck">这一版把浏览器自动化里几个一直需要绕路的动作补齐了：上传文件、接住下载、悬停菜单和历史后退。</p>
+<p class="article-deck">2608 交付线的小版本修复。Chrome CLI 补齐四个常用动作，浏览器录屏和软件工厂预览也修了两个会打断工作的细节。</p>
 
-## Chrome CLI 补齐常用动作
+## 变更
 
-智能体现在可以直接操作文件上传控件，在点击后接住浏览器下载，悬停展开菜单，并可靠地前进或后退。`--confirm` 的行为也写进帮助信息，涉及网页确认框时更容易判断后果。
+### Chrome CLI
 
-## 录屏和预览修复
+支持文件上传、接收下载、悬停菜单和历史后退；`--confirm` 的对话框行为写进帮助信息，调用方可以区分默认取消和经用户确认后的接受。（#1693）
 
-- 浏览器录屏去掉黑边，并显示当前录制状态。
-- 软件工厂 AgentBoard 流式编辑时不再反复抢占预览页签焦点。
-- 模型目录补上直连模型服务需要的模型名。
+### 浏览器、软件工厂和模型
 
-## 升级
+- 浏览器录屏去掉黑边，并显示当前录制状态。（#1691）
+- AgentBoard 流式编辑时不再反复抢占预览页签焦点。（#1688）
+- 模型目录补上直连模型服务所需的模型名。（#1690）
 
-没有新增必须调整的配置或协议。主应用镜像、JavaScript SDK 和 Python SDK 使用同一版本号 `2608.0.4`；需要恢复时切回 `v2608.0.3`。
+## 内部变更
 
-[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2608.0.4)
+删除已停用的 `coding_templates` 目录。（#1686）依赖自定义沙箱或构建脚本引用该目录的部署方，升级前应搜索并移除旧路径。
+
+## 前置条件
+
+无新增必填配置或协议变化。
+
+## 升级步骤
+
+将主应用镜像、JavaScript SDK 和 Python SDK 一起更新到 `2608.0.4`。不需要数据迁移。
+
+## 回滚方式
+
+切回 `v2608.0.3` 镜像和 SDK。
+
+## 已知限制
+
+没有已知阻塞问题。`release/v2608` 后续只接必要修复和小型界面调整，大功能继续在下一条交付线开发。

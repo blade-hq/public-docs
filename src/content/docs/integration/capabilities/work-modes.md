@@ -1,8 +1,7 @@
 ---
 title: "工作模式"
+description: 工作模式的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 工作模式
 
 Blade Agent 每次 `chat:send` 都在一个模式下运行。
 

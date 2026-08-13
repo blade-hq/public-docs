@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+import { compareReleaseEntries } from '../lib/content';
 import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro';
 import DefaultSidebar from '@astrojs/starlight/components/Sidebar.astro';
 
@@ -6,38 +8,67 @@ const base = import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
 const isBlog = pathname.includes('/blog/');
 const isChangelog = pathname.includes('/changelog/');
+const allDocs = await getCollection('docs');
 
-const blogEntries = [
-  { label: 'Blog 首页', href: `${base}blog/` },
-  { label: 'Blade Agent：别再让 AI 只负责出主意', href: `${base}blog/introducing-blade-agent/` },
-];
-const changelogEntries = [
-  { label: '全部版本', href: `${base}changelog/` },
-  { label: 'v2610.0.0-beta.1', href: `${base}changelog/v2610-0-0-beta-1/`, badge: 'BETA' },
-  { label: 'v2610.0.0-beta.0', href: `${base}changelog/v2610-0-0-beta-0/`, badge: 'BETA' },
-  { label: 'v2608.0.4', href: `${base}changelog/v2608-0-4/`, badge: '正式版' },
-  { label: 'v2608.0.3', href: `${base}changelog/v2608-0-3/`, badge: '正式版' },
-];
-const entries = isBlog ? blogEntries : changelogEntries;
-const title = isBlog ? 'Blog' : '更新日志';
+const pathFor = (id: string) => `${base}${id.replace(/index$/, '').replace(/\/$/, '')}/`;
+const formatDate = (date?: Date) => date
+  ? new Intl.DateTimeFormat('zh-CN', { month: '2-digit', day: '2-digit', timeZone: 'UTC' }).format(date)
+  : '';
+
+const blogEntries = allDocs
+  .filter((entry) => entry.data.contentType === 'blog-post' && !entry.data.draft)
+  .sort((a, b) => (b.data.date?.getTime() || 0) - (a.data.date?.getTime() || 0));
+
+const releaseEntries = allDocs
+  .filter((entry) => entry.data.contentType === 'changelog-release' && !entry.data.draft)
+  .sort(compareReleaseEntries);
+
+const releaseLines = [...new Set(releaseEntries.map((entry) => entry.data.line).filter(Boolean))];
 ---
 
-{isBlog || isChangelog ? (
+{isBlog ? (
   <>
-    <nav class="section-sidebar" aria-label={`${title}目录`}>
-      <div class="section-sidebar__eyebrow">{isBlog ? 'STORIES' : 'RELEASES'}</div>
-      <h2>{title}</h2>
-      <ul>
-        {entries.map((entry) => (
+    <nav class="section-sidebar" aria-label="Blog 目录">
+      <p class="section-sidebar__label">Blog</p>
+      <a class="section-sidebar__home" href={`${base}blog/`} aria-current={pathname === `${base}blog/` ? 'page' : undefined}>全部文章</a>
+      <ol class="section-sidebar__list">
+        {blogEntries.map((entry) => (
           <li>
-            <a href={entry.href} aria-current={pathname === new URL(entry.href, Astro.url).pathname ? 'page' : undefined}>
-              <span>{entry.label}</span>
-              {'badge' in entry && entry.badge && <small>{entry.badge}</small>}
+            <a href={pathFor(entry.id)} aria-current={pathname === pathFor(entry.id) ? 'page' : undefined}>
+              <span>{entry.data.title}</span>
+              <time datetime={entry.data.date?.toISOString()}>{formatDate(entry.data.date)}</time>
             </a>
           </li>
         ))}
-      </ul>
-      <a class="back-to-docs" href={`${base}guide/getting-started/`}>← 返回使用文档</a>
+      </ol>
+      <a class="section-sidebar__feed" href={`${base}blog/rss.xml`}>订阅 RSS</a>
+    </nav>
+    <div class="md:sl-hidden"><MobileMenuFooter /></div>
+  </>
+) : isChangelog ? (
+  <>
+    <nav class="section-sidebar" aria-label="更新日志目录">
+      <p class="section-sidebar__label">更新日志</p>
+      <a class="section-sidebar__home" href={`${base}changelog/`} aria-current={pathname === `${base}changelog/` ? 'page' : undefined}>全部版本</a>
+      {releaseLines.map((line) => (
+        <section class="release-line">
+          <h2>{line} 交付线</h2>
+          <ol class="section-sidebar__list">
+            {releaseEntries.filter((entry) => entry.data.line === line).map((entry) => (
+              <li>
+                <a href={pathFor(entry.id)} aria-current={pathname === pathFor(entry.id) ? 'page' : undefined}>
+                  <span>{entry.data.title}</span>
+                  <span class="release-meta">
+                    <time datetime={entry.data.date?.toISOString()}>{formatDate(entry.data.date)}</time>
+                    {entry.data.breaking && <b title="含破坏性变更">破坏性</b>}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+      <a class="section-sidebar__feed" href={`${base}changelog/rss.xml`}>订阅 RSS</a>
     </nav>
     <div class="md:sl-hidden"><MobileMenuFooter /></div>
   </>
@@ -45,16 +76,21 @@ const title = isBlog ? 'Blog' : '更新日志';
 
 <style>
   @layer starlight.core {
-    .section-sidebar { padding-top: .35rem; }
-    .section-sidebar__eyebrow { color: var(--blade-electric); font-family: var(--sl-font-mono); font-size: .68rem; font-weight: 650; letter-spacing: .12em; }
-    .section-sidebar h2 { margin: .45rem 0 1.4rem; font-size: 1.25rem; letter-spacing: -.035em; }
-    .section-sidebar ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--blade-line); }
-    .section-sidebar li { border-bottom: 1px solid var(--blade-line); }
-    .section-sidebar a { display: flex; justify-content: space-between; gap: .75rem; padding: .85rem .35rem; color: var(--sl-color-gray-2); font-size: .83rem; line-height: 1.5; text-decoration: none; }
-    .section-sidebar a:hover { color: var(--sl-color-white); }
-    .section-sidebar a[aria-current='page'] { color: var(--sl-color-white); font-weight: 720; }
-    .section-sidebar a[aria-current='page'] span::before { content: ''; display: inline-block; width: .45rem; height: .45rem; margin-right: .55rem; border-radius: 50%; background: var(--blade-electric); vertical-align: .08rem; }
-    .section-sidebar small { flex: 0 0 auto; align-self: start; padding: .1rem .28rem; color: var(--sl-color-gray-3); font-family: var(--sl-font-mono); font-size: .55rem; border: 1px solid var(--blade-line); border-radius: .2rem; }
-    .section-sidebar .back-to-docs { margin-top: 1.15rem; color: var(--blade-electric); font-weight: 650; }
+    .section-sidebar { padding-top: .25rem; }
+    .section-sidebar__label { margin: 0 0 .75rem; color: var(--sl-color-white); font-size: 1.08rem; font-weight: 760; }
+    .section-sidebar__home, .section-sidebar__feed { display: block; padding: .62rem 0; color: var(--sl-color-gray-2); font-size: .82rem; font-weight: 680; text-decoration: none; }
+    .section-sidebar__home { border-block: 1px solid var(--blade-line); }
+    .section-sidebar__home[aria-current='page'], .section-sidebar__home:hover, .section-sidebar__feed:hover { color: var(--blade-electric); }
+    .release-line { margin-top: 1.45rem; }
+    .release-line h2 { margin: 0 0 .35rem; color: var(--sl-color-gray-3); font-size: .68rem; font-weight: 680; letter-spacing: .04em; }
+    .section-sidebar__list { list-style: none; padding: 0; margin: 0; }
+    .section-sidebar__list li { margin: 0; }
+    .section-sidebar__list a { display: grid; gap: .28rem; padding: .62rem .55rem; margin-inline: -.55rem; color: var(--sl-color-gray-2); font-size: .78rem; line-height: 1.45; text-decoration: none; border-inline-start: 2px solid transparent; }
+    .section-sidebar__list a:hover { color: var(--sl-color-white); background: color-mix(in srgb, var(--blade-electric) 5%, transparent); }
+    .section-sidebar__list a[aria-current='page'] { color: var(--sl-color-white); font-weight: 680; border-inline-start-color: var(--blade-electric); background: color-mix(in srgb, var(--blade-electric) 7%, transparent); }
+    .section-sidebar__list time { color: var(--sl-color-gray-3); font-family: var(--sl-font-mono); font-size: .64rem; }
+    .release-meta { display: flex; align-items: center; gap: .45rem; }
+    .release-meta b { color: var(--blade-warning-text); font-size: .6rem; font-weight: 680; }
+    .section-sidebar__feed { margin-top: 1.4rem; border-top: 1px solid var(--blade-line); }
   }
 </style>

@@ -1,8 +1,7 @@
 ---
 title: "Blade OAuth 配置"
+description: Blade OAuth 配置的配置、使用步骤、接口行为和排查说明。
 ---
-
-# Blade OAuth 配置
 
 Blade OAuth 是平台的统一认证服务，运行在 `http://<host>:19000`，管理后台地址为 `http://<host>:19000/admin`。
 

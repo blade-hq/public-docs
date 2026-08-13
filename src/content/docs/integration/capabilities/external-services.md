@@ -1,8 +1,7 @@
 ---
 title: "外部服务接入（MCP / OpenAPI / GraphQL）"
+description: 外部服务接入（MCP / OpenAPI / GraphQL）的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 外部服务接入（MCP / OpenAPI / GraphQL）
 
 智能体支持对接外部服务，包括 MCP 服务、OpenAPI 接口和 GraphQL 端点。开发者只需提供服务配置，智能体运行时会自动发现并调用。
 

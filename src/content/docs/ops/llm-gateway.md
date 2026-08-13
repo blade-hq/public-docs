@@ -1,8 +1,7 @@
 ---
 title: "LLM Gateway 配置"
+description: LLM Gateway 配置的配置、使用步骤、接口行为和排查说明。
 ---
-
-# LLM Gateway 配置
 
 LLM Gateway 是统一网关，为内网散落的 LLM 上游（vLLM、sglang、OpenAI 兼容服务等）提供单一入口，同时暴露 OpenAI (`/v1/chat/completions`) 和 Anthropic (`/v1/messages`) 两套协议。
 

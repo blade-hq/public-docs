@@ -14,8 +14,11 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Blade Agent',
-      description: 'Blade Agent 使用文档、更新日志与产品 Blog',
+      title: 'Blade Agent 文档',
+      description: 'Blade Agent 的使用、开发、接入、部署文档，以及版本更新和工程文章。',
+      locales: {
+        root: { label: '简体中文', lang: 'zh-CN' },
+      },
       customCss: ['./src/styles/custom.css'],
       components: {
         Header: './src/components/Header.astro',
@@ -27,6 +30,10 @@ export default defineConfig({
       ],
       lastUpdated: true,
       pagination: true,
+      head: [
+        { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'Blade Agent Blog', href: `${base.replace(/\/$/, '')}/blog/rss.xml` } },
+        { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'Blade Agent 更新日志', href: `${base.replace(/\/$/, '')}/changelog/rss.xml` } },
+      ],
       plugins: [
         starlightLinksValidator({
           errorOnRelativeLinks: false,
@@ -35,11 +42,12 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: '使用指南',
+          label: '开始使用',
           items: [
+            { label: '文档总览', slug: 'docs/overview' },
             { label: '快速开始', slug: 'guide/getting-started' },
             { label: 'Blade OS 桌面', slug: 'guide/blade-os' },
-            { label: '解决方案与角色', slug: 'guide/solutions-and-roles' },
+            { label: '选择解决方案与角色', slug: 'guide/solutions-and-roles' },
             { label: '云电脑', slug: 'guide/cloud-computer' },
             { label: '软件工厂', slug: 'guide/factory' },
             { label: '技能编辑', slug: 'guide/skill-editor' },
@@ -59,7 +67,7 @@ export default defineConfig({
         {
           label: '智能体开发',
           items: [
-            { label: '核心概念', slug: 'agent-dev/concepts' },
+            { label: '智能体开发核心概念', slug: 'agent-dev/concepts' },
             {
               label: '解决方案开发',
               items: [
@@ -78,13 +86,14 @@ export default defineConfig({
                 { label: '内置系统工具', slug: 'agent-dev/skill/tools' },
               ],
             },
-            { label: '调试与排查', slug: 'agent-dev/debugging' },
+            { label: '技能与解决方案调试', slug: 'agent-dev/debugging' },
           ],
         },
         {
           label: '应用接入',
           items: [
-            { label: '核心概念', slug: 'integration/concepts' },
+            { label: '接入核心概念', slug: 'integration/concepts' },
+            { label: '端到端接入示例', slug: 'integration/end-to-end-example' },
             {
               label: '前端 SDK',
               items: [
@@ -112,7 +121,7 @@ export default defineConfig({
                 { label: '外部服务接入', slug: 'integration/capabilities/external-services' },
               ],
             },
-            { label: '调试与排查', slug: 'integration/debugging' },
+            { label: 'SDK 接入排障', slug: 'integration/debugging' },
           ],
         },
         {
@@ -135,8 +144,9 @@ export default defineConfig({
             { label: '使用盒子内的大模型', slug: 'ops/use-llm' },
             { label: '沙箱镜像定制', slug: 'ops/sandbox' },
             { label: '环境变量参考', slug: 'ops/env' },
+            { label: '版本与兼容性', slug: 'ops/version-compatibility' },
             { label: '监控与观测', slug: 'ops/monitoring' },
-            { label: '安全与加密', slug: 'ops/security' },
+            { label: '安全与数据边界', slug: 'ops/security' },
           ],
         },
       ],

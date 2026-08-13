@@ -1,8 +1,7 @@
 ---
 title: "业务角色配置"
+description: 业务角色配置的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 业务角色配置
 
 ## role.yaml 字段说明
 
@@ -138,7 +137,7 @@ cp -r "$SOLUTION_DIR/templates/" "$WORKSPACE_DIR/templates/"
 
 **示例：**
 
-```jinja2
+```jinja
 当前日期：{{ current_date }}
 用户：{{ user.name }}（{{ user.email }}）
 

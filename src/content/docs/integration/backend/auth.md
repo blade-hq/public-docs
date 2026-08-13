@@ -1,8 +1,7 @@
 ---
 title: "鉴权"
+description: 鉴权的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 鉴权
 
 SDK 的所有请求（REST 和 Socket.IO）都用同一个 Bearer Token 鉴权。
 

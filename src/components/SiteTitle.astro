@@ -4,7 +4,7 @@ const base = import.meta.env.BASE_URL;
 
 <a href={base} class="site-title" aria-label="Blade Agent 首页">
   <span class="blade-mark" aria-hidden="true"><i></i><b></b></span>
-  <span class="wordmark"><strong>Blade</strong><small>Agent</small></span>
+  <span class="wordmark"><strong>Blade Agent</strong></span>
 </a>
 
 <style>
@@ -14,8 +14,7 @@ const base = import.meta.env.BASE_URL;
     .blade-mark i, .blade-mark b { position: absolute; display: block; background: var(--blade-electric); }
     .blade-mark i { inset: 0.05rem 0.75rem 0.55rem 0.05rem; clip-path: polygon(38% 0,100% 0,62% 100%,0 100%); }
     .blade-mark b { inset: 0.55rem 0.05rem 0.05rem 0.75rem; clip-path: polygon(38% 0,100% 0,62% 100%,0 100%); opacity: .66; }
-    .wordmark { display: flex; align-items: baseline; gap: 0.28rem; letter-spacing: -0.03em; }
-    .wordmark strong { font-size: 1rem; font-weight: 820; }
-    .wordmark small { color: var(--sl-color-gray-3); font-size: 0.72rem; font-weight: 650; letter-spacing: 0.02em; }
+    .wordmark { display: flex; align-items: baseline; gap: 0.28rem; letter-spacing: 0; }
+    .wordmark strong { font-size: .95rem; font-weight: 780; }
   }
 </style>

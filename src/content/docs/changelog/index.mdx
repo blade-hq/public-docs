@@ -1,38 +1,16 @@
 ---
 title: 更新日志
-description: Blade Agent 主分支已发布版本，包括 beta 预发布
-template: splash
+description: Blade Agent 正式版和独立预发布版本的完整记录，包括升级条件、破坏性变更和已知限制。
+contentType: changelog-index
 next: false
-hero:
-  title: 更新日志
-  tagline: 只记录已经从主分支发布的 Blade Agent 版本。正式版、beta、升级要求和已知限制都放在这里。
+lastUpdated: false
 ---
 
-<div class="release-summary">
-  <a class="release-card featured" href="./v2610-0-0-beta-1/">
-    <div><span class="release-badge beta">BETA</span><time>2026.08.13</time></div>
-    <h2>v2610.0.0-beta.1</h2>
-    <p>软件工厂模板接入用户体系，同时加入全局搜索、用户偏好上下文、访问统计和轻量渲染。</p>
-    <strong>查看版本说明 →</strong>
-  </a>
-  <a class="release-card" href="./v2610-0-0-beta-0/">
-    <div><span class="release-badge beta">BETA</span><time>2026.08.12</time></div>
-    <h2>v2610.0.0-beta.0</h2>
-    <p>2610 交付线首次预发布，带来 Android / iOS 手机客户端的最小可用版本。</p>
-    <strong>查看版本说明 →</strong>
-  </a>
-  <a class="release-card" href="./v2608-0-4/">
-    <div><span class="release-badge stable">正式版</span><time>2026.08.12</time></div>
-    <h2>v2608.0.4</h2>
-    <p>Chrome CLI 增加上传、下载、悬停和后退，浏览器录屏与软件工厂预览也更稳定。</p>
-    <strong>查看版本说明 →</strong>
-  </a>
-  <a class="release-card" href="./v2608-0-3/">
-    <div><span class="release-badge stable">正式版</span><time>2026.08.12</time></div>
-    <h2>v2608.0.3</h2>
-    <p>智能应用开发、SDK 会话回放、共享记忆、浏览器镜像和 Exa 检索集中更新。</p>
-    <strong>查看版本说明 →</strong>
-  </a>
-</div>
+import ReleaseIndex from '../../../components/ReleaseIndex.astro';
 
-<p class="release-source">版本信息来自 <a href="https://github.com/blade-hq/blade-agent/releases">blade-hq/blade-agent Releases</a>。alpha 实验版本不进入此列表；beta 和正式版会保留。</p>
+
+这里记录 Blade Agent 主分支发布的正式版与独立预发布版本。用于验证同一份代码的 `-beta.N` tag 不单独建页，而是记在对应正式版页面中；alpha 只用于内部实验，不收录。
+
+版本页先回答三个问题：谁会受影响、升级前缺什么、怎样回退。提交编号对应 `blade-hq/blade-agent` 内部仓库，保留为支持工单和版本核对用的引用，不提供公众无法访问的链接。
+
+<ReleaseIndex />

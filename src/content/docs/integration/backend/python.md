@@ -1,8 +1,7 @@
 ---
 title: "Python 后端接入"
+description: Python 后端接入的配置、使用步骤、接口行为和排查说明。
 ---
-
-# Python 后端接入
 
 :::note 完整示例工程
 [下载 examples-python.zip](../../../downloads/examples-python.zip) — 包含 quickstart、headless、文件上传三个可运行脚本。
@@ -13,7 +12,7 @@ title: "Python 后端接入"
 版本号需和 Blade Agent 后端一致（[如何查看](../../concepts/#快速开始)）：
 
 ```bash
-# 将 <version> 替换为后端版本号，如 1.0.10
+# 将 <version> 替换为后端版本号，如 2608.0.4
 pip install blade-agent-kit==<version>
 # 或
 uv add blade-agent-kit==<version>

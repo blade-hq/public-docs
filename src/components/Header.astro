@@ -1,5 +1,4 @@
 ---
-import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
 import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from './SiteTitle.astro';
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
@@ -8,7 +7,7 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 const base = import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
 const items = [
-  { label: '使用文档', href: `${base}guide/getting-started/`, active: !pathname.includes('/changelog/') && !pathname.includes('/blog/') },
+  { label: '使用文档', href: `${base}docs/overview/`, active: !pathname.includes('/changelog/') && !pathname.includes('/blog/') },
   { label: '更新日志', href: `${base}changelog/`, active: pathname.includes('/changelog/') },
   { label: 'Blog', href: `${base}blog/`, active: pathname.includes('/blog/') },
 ];
@@ -27,7 +26,6 @@ const items = [
   <div class="sl-hidden md:sl-flex print:hidden right-group">
     <div class="sl-flex social-icons"><SocialIcons /></div>
     <ThemeSelect />
-    <LanguageSelect />
   </div>
 </div>
 

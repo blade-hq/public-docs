@@ -1,8 +1,7 @@
 ---
 title: "React 接入"
+description: React 接入的配置、使用步骤、接口行为和排查说明。
 ---
-
-# React 接入
 
 :::note 完整示例工程
 [下载 examples-react.zip](../../../downloads/examples-react.zip) — Vite + React 19 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
@@ -13,7 +12,7 @@ title: "React 接入"
 版本号需和 Blade Agent 后端一致（[如何查看](../../concepts/#快速开始)）：
 
 ```bash
-# 将 <version> 替换为后端版本号，如 1.0.10
+# 将 <version> 替换为后端版本号，如 2608.0.4
 pnpm add @blade-hq/agent-kit@<version> react@^19.0.0 react-dom@^19.0.0 @tanstack/react-query@^5.0.0 sonner@^2.0.7
 ```
 

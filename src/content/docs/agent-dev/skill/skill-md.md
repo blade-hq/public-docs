@@ -1,8 +1,7 @@
 ---
 title: "SKILL.md 编写规范"
+description: SKILL.md 编写规范的配置、使用步骤、接口行为和排查说明。
 ---
-
-# SKILL.md 编写规范
 
 `SKILL.md` 是技能的核心定义文件，智能体通过它理解技能的用途和使用方法。
 

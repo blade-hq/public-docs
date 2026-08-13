@@ -1,8 +1,7 @@
 ---
 title: "目录结构与 manifest"
+description: 目录结构与 manifest的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 目录结构与 manifest
 
 ## v3 目录结构
 

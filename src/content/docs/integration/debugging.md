@@ -1,8 +1,7 @@
 ---
-title: "调试与排查"
+title: "SDK 接入排障"
+description: 排查 Agent Kit 的鉴权、Socket.IO、消息、文件上传、样式、依赖和 SSE 转发问题。
 ---
-
-# 调试与排查
 
 ## 浏览器开发者工具
 
@@ -115,7 +114,7 @@ const items = useStore((state) => state.items[id] ?? EMPTY_ITEMS)
 **修复**：
 
 ```bash
-npm install @blade-hq/agent-kit@0.5.11 react@^19.0.0 react-dom@^19.0.0 @tanstack/react-query@^5.0.0 sonner@^2.0.7
+npm install @blade-hq/agent-kit@2608.0.4 react@^19.0.0 react-dom@^19.0.0 @tanstack/react-query@^5.0.0 sonner@^2.0.7
 ```
 
 不要用 React 18，不要用 `--force` 或 `--legacy-peer-deps`。

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import { compareReleaseEntries } from '../lib/content';
+
+const base = import.meta.env.BASE_URL;
+const releases = (await getCollection('docs'))
+  .filter((entry) => entry.data.contentType === 'changelog-release' && !entry.data.draft)
+  .sort(compareReleaseEntries);
+
+const formatDate = (date?: Date) => date
+  ? new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' }).format(date).replaceAll('/', '-')
+  : '';
+const pathFor = (id: string) => `${base}${id.replace(/index$/, '').replace(/\/$/, '')}/`;
+---
+
+<div class="release-controls" role="group" aria-label="筛选版本">
+  <button type="button" data-filter="all" aria-pressed="true">全部</button>
+  <button type="button" data-filter="stable" aria-pressed="false">仅正式版</button>
+  <button type="button" data-filter="breaking" aria-pressed="false">有破坏性变更</button>
+  {[...new Set(releases.map((release) => release.data.line).filter(Boolean))].map((line) => (
+    <button type="button" data-filter={`line-${line}`} aria-pressed="false">{line}</button>
+  ))}
+  <a href={`${base}changelog/rss.xml`}>RSS</a>
+</div>
+
+<div class="release-table-wrap">
+  <table class="release-table">
+    <thead><tr><th>版本</th><th>日期</th><th>类型</th><th>标记</th><th>摘要</th></tr></thead>
+    <tbody>
+      {releases.map((release) => (
+        <tr data-channel={release.data.channel} data-breaking={String(release.data.breaking)} data-line={release.data.line}>
+          <td><a href={pathFor(release.id)}>{release.data.title}</a></td>
+          <td><time datetime={release.data.date?.toISOString()}>{formatDate(release.data.date)}</time></td>
+          <td><span class={`release-badge ${release.data.channel}`}>{release.data.channel === 'stable' ? '正式版' : '预发布'}</span></td>
+          <td>
+            <span class="release-flags">
+              {release.data.breaking && <b>破坏性变更</b>}
+              {release.data.requires?.map((item) => <b>需同步 {item.name}</b>)}
+              {!release.data.breaking && !release.data.requires?.length && <span>无</span>}
+            </span>
+          </td>
+          <td>{release.data.summary || release.data.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="release-empty" hidden>没有符合条件的版本。</p>
+</div>
+
+<script>
+  const controls = document.querySelector<HTMLElement>('.release-controls');
+  const rows = [...document.querySelectorAll<HTMLTableRowElement>('.release-table tbody tr')];
+  const empty = document.querySelector<HTMLElement>('.release-empty');
+  controls?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest<HTMLButtonElement>('button[data-filter]');
+    if (!button) return;
+    const filter = button.dataset.filter;
+    controls.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    let visible = 0;
+    rows.forEach((row) => {
+      const show = filter === 'all'
+        || (filter === 'stable' && row.dataset.channel === 'stable')
+        || (filter === 'breaking' && row.dataset.breaking === 'true')
+        || (filter?.startsWith('line-') && row.dataset.line === filter.slice(5));
+      row.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  });
+</script>

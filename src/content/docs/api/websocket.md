@@ -1,8 +1,7 @@
 ---
 title: "WebSocket 接口"
+description: WebSocket 接口的配置、使用步骤、接口行为和排查说明。
 ---
-
-# WebSocket 接口
 
 ## 连接
 

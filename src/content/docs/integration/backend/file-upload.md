@@ -1,8 +1,7 @@
 ---
 title: "文件上传"
+description: 文件上传的配置、使用步骤、接口行为和排查说明。
 ---
-
-# 文件上传
 
 将普通业务文件（Markdown、CSV、PDF 等）上传到 Session Workspace，让智能体读取分析。
 
@@ -69,7 +68,7 @@ if (result.failed?.length) {
 ```
 
 :::danger
-不要使用 `client.uploadFile(...)` 或 `client.workspaces.uploadFile(...)`，0.5.11 没有这些方法。
+不要使用 `client.uploadFile(...)` 或 `client.workspaces.uploadFile(...)`；当前 SDK 没有这些方法。
 :::
 
 ## REST 直接上传

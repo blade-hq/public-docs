@@ -1,8 +1,7 @@
 ---
-title: "核心概念"
+title: "智能体开发核心概念"
+description: Solution、BizRole 和 Skill 的职责、目录关系和引用方式。
 ---
-
-# 核心概念
 
 Blade Agent 通过三个核心概念组织智能体的能力：**解决方案**、**业务角色**和**技能**。
 

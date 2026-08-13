@@ -1,26 +1,47 @@
 ---
 title: v2610.0.0-beta.0
-description: 2610 交付线首次 beta，加入手机客户端最小可用版本。
+description: 2610 交付线首次预发布，加入 Android 与 iOS 手机客户端的最小可用版本。
+contentType: changelog-release
+version: "2610.0.0-beta.0"
+line: "2610"
+date: 2026-08-12
+channel: beta
+breaking: false
+requires: []
+range: "v2608.0.4..v2610.0.0-beta.0"
+commits: 1
+refs: ["#1681"]
+summary: 加入 Capacitor 手机客户端外壳和连接入口，连接已有 Blade Agent 部署。
 sidebar:
   hidden: true
 ---
 
-<div class="release-heading"><span class="release-badge beta">BETA</span><time>2026.08.12</time></div>
+<div class="release-heading"><span class="release-badge beta">预发布</span><time>2026-08-12</time><span class="release-risk">仅测试环境</span></div>
 
-<p class="article-deck">2610 交付线的第一次 beta，重点不是缩小网页，而是让已有 Blade Agent 部署能从手机上连接和使用。</p>
+<p class="article-deck">2610 交付线的第一次预发布，目标是先跑通安装客户端、连接已有部署和进入 Blade Agent 的主链路，不是完整的移动端重设计。</p>
 
-## 手机客户端最小可用版本
+## 变更
 
-新增 Capacitor 客户端外壳，包含 Android 与 iOS 工程、连接入口和原生壳通信。服务端增加移动端连接所需路由；Web 应用会识别原生壳，并在聊天输入区域提供连接能力。
+新增 Capacitor 客户端外壳，包含 Android 与 iOS 工程、连接入口和原生壳通信。服务端加入移动端连接路由，Web 应用可以识别原生壳，并在聊天输入区提供连接能力。（#1681）
 
-这是最小可用版本，目标是先跑通“安装客户端、连接已有部署、进入 Blade Agent”的主链路，并非完整的移动端重设计。
+手机端连接的是现有 Blade Agent 服务，不会在手机本地运行沙箱或模型。
 
-<img class="article-shot" src="../../images/releases/v2610.0.0-beta.0/home.png" alt="Blade Agent 对话首页" />
+<img class="article-shot" src="../../images/releases/v2610.0.0-beta.0/home.png" alt="v2610.0.0-beta.0 的 Blade Agent 手机连接入口" />
 
-## 部署提示
+## 前置条件
 
-- Android 明文 HTTP 访问按配置的子域放行，生产环境仍建议使用 HTTPS。
-- 手机客户端连接的是已有 Blade Agent 服务，不会在手机本地运行沙盒或模型。
-- 本版本属于 beta，升级前应在测试环境验证 OAuth 回调与移动网络访问。
+生产环境应使用 HTTPS。若测试环境仍使用明文 HTTP，需要确认 Android 网络安全配置只放行目标子域；这项配置来自 #1681 的实现，不是通用的安全建议。
 
-[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2610.0.0-beta.0)
+## 升级步骤
+
+1. 在测试环境部署 `v2610.0.0-beta.0`。
+2. 安装对应平台客户端，填写现有 Blade Agent 地址。
+3. 验证 OAuth 回调、移动网络访问、会话历史和文件下载。
+
+## 回滚方式
+
+服务端切回 `v2608.0.4`，并停止分发该预发布客户端。
+
+## 已知限制
+
+这是最小可用版本，只应在测试环境验证；移动端交互和平台分发流程仍在调整。

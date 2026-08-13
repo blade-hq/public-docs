@@ -1,8 +1,7 @@
 ---
 title: "API 概览"
+description: Blade Agent REST 与 Socket.IO API 的基础地址、认证、版本、响应和分页约定。
 ---
-
-# API 概览
 
 ## 基础地址
 
@@ -17,6 +16,23 @@ Socket.IO 连接地址：
 ```
 wss://blade.example.com/socket.io/
 ```
+
+## 服务端版本
+
+`GET /api/version` 无需鉴权，用于获取服务端版本和最低 SDK 断点：
+
+```bash
+curl http://<host>:8020/api/version
+```
+
+```json
+{
+  "version": "2608.0.4",
+  "min_sdk": "1.1.1"
+}
+```
+
+接入方应优先安装与 `version` 相同的精确 SDK 版本。`min_sdk` 只表示协议允许的最低断点，不代表旧 SDK 包含当前版本的全部功能。
 
 ## 认证
 

@@ -1,13 +1,12 @@
 ---
 title: "Node.js 后端接入"
+description: Node.js 后端接入的配置、使用步骤、接口行为和排查说明。
 ---
-
-# Node.js 后端接入
 
 ## 安装
 
 ```bash
-npm install @blade-hq/agent-kit@0.5.11
+npm install @blade-hq/agent-kit@2608.0.4
 ```
 
 Node.js 项目必须使用 ESM：`package.json` 设置 `"type": "module"`。只用 `/client` 入口，不需要 React。
@@ -16,7 +15,7 @@ Node.js 项目必须使用 ESM：`package.json` 设置 `"type": "module"`。只�
 {
   "type": "module",
   "dependencies": {
-    "@blade-hq/agent-kit": "0.5.11"
+    "@blade-hq/agent-kit": "2608.0.4"
   }
 }
 ```

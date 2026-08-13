@@ -1,42 +1,73 @@
 ---
 title: v2610.0.0-beta.1
-description: 软件工厂模板接入用户体系，全局搜索、用户偏好和轻量渲染。
+description: 软件工厂模板接入用户体系，并更新管理员判定、搜索、用户偏好、浏览器和访问统计。
+contentType: changelog-release
+version: "2610.0.0-beta.1"
+line: "2610"
+date: 2026-08-13
+channel: beta
+breaking: true
+requires:
+  - name: Blade Hub
+    note: 必须包含模板用户空间改动；发布时对应分支尚未发版
+range: "v2610.0.0-beta.0..v2610.0.0-beta.1"
+commits: 14
+refs: ["#1694", "#1689", "#1697", "#1700", "#1696", "#1704", "#1707", "#1709", "#1711", "#1710", "#1712", "#1699", "#1703", "#1716"]
+summary: 模板 ID 改为 owner/slug 且无兼容窗口；管理员判定、全局搜索、用户偏好和浏览器资源管理一并更新。
 sidebar:
   hidden: true
 ---
 
-<div class="release-heading"><span class="release-badge beta">BETA</span><time>2026.08.13</time></div>
+<div class="release-heading"><span class="release-badge beta">预发布</span><time>2026-08-13</time><span class="release-risk danger">破坏性变更</span><span class="release-risk">需同步 Blade Hub</span></div>
 
-<p class="article-deck">这次 beta 把软件工厂模板放进真实的用户体系里，也补上了搜索、偏好上下文和产品效果反馈。</p>
+<p class="article-deck">模板 ID 从单段改为 <code>&lt;owner&gt;/&lt;slug&gt;</code>，Blade Agent 与 Blade Hub 之间没有兼容窗口。发布该版本时，Blade Hub 对应分支尚未发版，因此不能直接用于生产升级。</p>
 
-## 软件工厂模板开始识别用户
+## 部署前必读
 
-模板列表、详情、素材和下载请求现在会透传当前用户身份。模板地址从单段 ID 改为 `<owner>/<slug>`，前端路由和侧边栏搜索一起调整。
+- 新 Blade Agent + 旧 Blade Hub：模板详情、素材和下载全部返回 404。
+- 旧 Blade Agent + 新 Blade Hub：响应缺少 `id` / `owner`，前端生成错误路由。
+- Blade Hub 侧对应分支为 `feat/software-factory-template-user-space`，发布本预发布版时仍未出正式版本。先确认目标环境已包含该改动。
+- Blade Hub 的 `presets.yaml` 还要声明模板组织并配置 `repo_prefix: template--`，否则匿名用户和非组织成员看不到预置模板。
 
-:::caution 必须同步升级 Blade Hub
-这是破坏性变更，没有兼容窗口。部署该版本前，Blade Hub 必须包含对应的模板用户空间改动；否则详情、素材或下载会出现 404。`presets.yaml` 也需要声明模板组织及 `repo_prefix: template--`。
-:::
+## 变更
 
-<img class="article-shot" src="../../images/releases/v2610.0.0-beta.0/software-factory.png" alt="软件工厂模板和项目创建入口" />
+### 软件工厂模板
 
-## 搜索不再局限于当前页面
+模板列表、详情、素材和下载四条代理路径统一交换凭证并透传用户身份；API Key 与普通 JWT 走同一套回退逻辑。模板路由、AppDevPage 和侧栏搜索改用两段 ID。（#1716）
 
-新增用户级全局搜索，可以从一个入口查找会话、项目和相关内容。用户身份与工作偏好也会进入上下文，使同一个智能体在不同账号下采用各自的设置。
+### 身份与权限
 
-## 更轻的会话渲染
+管理员判定改为跟随 Blade OAuth 的身份声明，首个登录用户不再自动成为管理员。（#1704）升级后应检查管理员账号与组织配置，不能再依赖登录顺序授予权限。
 
-会话新增轻量渲染模式，长对话不必一次挂载全部历史内容。成果汇总也重新整理，任务结束后的文件和网址更容易找到。
+### 会话、搜索与统计
 
-## 浏览器与统计
+- 新增轻量渲染模式，成果汇总重新整理。（#1694、#1697）
+- 新增用户级全局搜索，用户身份和工作偏好进入上下文。（#1709、#1711）
+- 已发布应用加入访问统计，修复统计生命周期；Blade Agent 增加效果反馈埋点和跳转。（#1707、#1710、#1712、#1699）
 
-- 浏览器手动模式会避让自动操作；标签页闲置后冻结，CLI 也可以主动关闭浏览器释放资源。
-- Chrome CLI 的历史前进、后退不再依赖页面导航事件。
-- 已发布应用加入轻量访问统计，Blade Agent 界面增加效果反馈入口。
+### 浏览器与 CLI
 
-## 升级前检查
+浏览器手动模式会避让自动操作，标签页闲置后冻结，CLI 可以主动关闭浏览器释放资源；历史前进和后退不再依赖导航事件，空闲冻结节流窗口也已修复。（#1700、#1696、#1703）
 
-1. 先部署带模板用户空间改动的 Blade Hub。
-2. 确认模板仓库采用 `<owner>/<slug>` 两段 ID。
-3. 再升级 Blade Agent 镜像与同版本 SDK。
+## 内部变更
 
-[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2610.0.0-beta.1)
+三个 CLI 移到 `builtin/clis/`。（#1689）自定义沙箱镜像或脚本如果引用旧路径，升级前必须调整。
+
+## 前置条件
+
+Blade Hub 必须含模板用户空间改动，并完成 `presets.yaml` 配置。还要确认管理员身份由 Blade OAuth 正确声明。
+
+## 升级步骤
+
+1. 在隔离测试环境部署带模板用户空间改动的 Blade Hub；若没有可确认的版本，不要继续。
+2. 验证模板仓库采用 `<owner>/<slug>`，预置模板组织和 `repo_prefix` 配置正确。
+3. 部署 `v2610.0.0-beta.1`，再验证模板列表、封面、详情、下载、管理员权限和全局搜索。
+4. SDK 如需更新，使用与服务端相同的 `2610.0.0-beta.1` 版本。
+
+## 回滚方式
+
+Blade Agent 与 Blade Hub 必须成对回滚到升级前的组合；只回滚其中一个会落入上面的双向失败状态。回滚后复核模板路由和管理员权限。
+
+## 已知限制
+
+发布时没有可引用的 Blade Hub 正式版本，因此这份预发布版只适合协同验证。模板 ID 变化没有兼容窗口。

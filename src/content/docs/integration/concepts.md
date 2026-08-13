@@ -1,17 +1,17 @@
 ---
-title: "核心概念"
+title: "接入核心概念"
+description: Agent Kit SDK 的版本匹配、会话、工作区、Token、工作模式和消息流程。
+appliesTo: ">=2608.0.0"
 ---
-
-# 核心概念
 
 ## 快速开始
 
 :::note SDK 版本必须和后端版本一致
-安装 SDK 时，版本号要和 Blade Agent 后端版本对应。后端版本号在 Web UI 左上角 logo 旁查看：
+安装 SDK 时，版本号要和 Blade Agent 后端版本对应。优先请求无需鉴权的 `GET /api/version`；也可以在 Web UI 左上角 logo 旁查看：
 
 <img src="../../images/ba-version-location.png" alt="后端版本号位置">
 
-例如后端是 `v1.0.10`，前端 SDK 就装 `@blade-hq/agent-kit@1.0.10`，Python SDK 就装 `blade-agent-kit==1.0.10`。
+例如接口返回 `{"version":"2608.0.4","min_sdk":"1.1.1"}`，前端 SDK 安装 `@blade-hq/agent-kit@2608.0.4`，Python SDK 安装项目发布清单中对应的 `2608.0.4` 包。不要使用 `^2608.0.4` 这类范围，先钉住精确版本。
 :::
 
 下载示例工程，填入后端地址和 Token 即可运行：

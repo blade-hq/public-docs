@@ -1,8 +1,7 @@
 ---
 title: "Chat 流程"
+description: Chat 流程的配置、使用步骤、接口行为和排查说明。
 ---
-
-# Chat 流程
 
 ## 核心概念
 
