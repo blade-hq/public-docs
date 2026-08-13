@@ -16,6 +16,7 @@ export default defineConfig({
       components: {
         Header: './src/components/Header.astro',
         SiteTitle: './src/components/SiteTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/blade-hq/public-docs' },

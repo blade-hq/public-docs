@@ -1,0 +1,60 @@
+---
+import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro';
+import DefaultSidebar from '@astrojs/starlight/components/Sidebar.astro';
+
+const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+const isBlog = pathname.includes('/blog/');
+const isChangelog = pathname.includes('/changelog/');
+
+const blogEntries = [
+  { label: 'Blog 首页', href: `${base}blog/` },
+  { label: 'Blade Agent：别再让 AI 只负责出主意', href: `${base}blog/introducing-blade-agent/` },
+];
+const changelogEntries = [
+  { label: '全部版本', href: `${base}changelog/` },
+  { label: 'v2610.0.0-beta.1', href: `${base}changelog/v2610-0-0-beta-1/`, badge: 'BETA' },
+  { label: 'v2610.0.0-beta.0', href: `${base}changelog/v2610-0-0-beta-0/`, badge: 'BETA' },
+  { label: 'v2608.0.4', href: `${base}changelog/v2608-0-4/`, badge: '正式版' },
+  { label: 'v2608.0.3', href: `${base}changelog/v2608-0-3/`, badge: '正式版' },
+];
+const entries = isBlog ? blogEntries : changelogEntries;
+const title = isBlog ? 'Blog' : '更新日志';
+---
+
+{isBlog || isChangelog ? (
+  <>
+    <nav class="section-sidebar" aria-label={`${title}目录`}>
+      <div class="section-sidebar__eyebrow">{isBlog ? 'STORIES' : 'RELEASES'}</div>
+      <h2>{title}</h2>
+      <ul>
+        {entries.map((entry) => (
+          <li>
+            <a href={entry.href} aria-current={pathname === new URL(entry.href, Astro.url).pathname ? 'page' : undefined}>
+              <span>{entry.label}</span>
+              {'badge' in entry && entry.badge && <small>{entry.badge}</small>}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a class="back-to-docs" href={`${base}guide/getting-started/`}>← 返回使用文档</a>
+    </nav>
+    <div class="md:sl-hidden"><MobileMenuFooter /></div>
+  </>
+) : <DefaultSidebar />}
+
+<style>
+  @layer starlight.core {
+    .section-sidebar { padding-top: .35rem; }
+    .section-sidebar__eyebrow { color: var(--blade-electric); font-family: var(--sl-font-mono); font-size: .68rem; font-weight: 650; letter-spacing: .12em; }
+    .section-sidebar h2 { margin: .45rem 0 1.4rem; font-size: 1.25rem; letter-spacing: -.035em; }
+    .section-sidebar ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--blade-line); }
+    .section-sidebar li { border-bottom: 1px solid var(--blade-line); }
+    .section-sidebar a { display: flex; justify-content: space-between; gap: .75rem; padding: .85rem .35rem; color: var(--sl-color-gray-2); font-size: .83rem; line-height: 1.5; text-decoration: none; }
+    .section-sidebar a:hover { color: var(--sl-color-white); }
+    .section-sidebar a[aria-current='page'] { color: var(--sl-color-white); font-weight: 720; }
+    .section-sidebar a[aria-current='page'] span::before { content: ''; display: inline-block; width: .45rem; height: .45rem; margin-right: .55rem; border-radius: 50%; background: var(--blade-electric); vertical-align: .08rem; }
+    .section-sidebar small { flex: 0 0 auto; align-self: start; padding: .1rem .28rem; color: var(--sl-color-gray-3); font-family: var(--sl-font-mono); font-size: .55rem; border: 1px solid var(--blade-line); border-radius: .2rem; }
+    .section-sidebar .back-to-docs { margin-top: 1.15rem; color: var(--blade-electric); font-weight: 650; }
+  }
+</style>
