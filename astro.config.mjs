@@ -31,6 +31,9 @@ export default defineConfig({
       lastUpdated: true,
       pagination: true,
       head: [
+        { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
+        { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true } },
+        { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&display=swap' } },
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'Blade Agent Blog', href: `${base.replace(/\/$/, '')}/blog/rss.xml` } },
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'Blade Agent 更新日志', href: `${base.replace(/\/$/, '')}/changelog/rss.xml` } },
       ],

@@ -3,18 +3,31 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <a href={base} class="site-title" aria-label="Blade Agent 首页">
-  <span class="blade-mark" aria-hidden="true"><i></i><b></b></span>
-  <span class="wordmark"><strong>Blade Agent</strong></span>
+  <span class="blade-mark" aria-hidden="true"></span>
+  <span class="wordmark">Blade Agent</span>
 </a>
 
 <style>
   @layer starlight.core {
-    .site-title { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--sl-color-white); text-decoration: none; white-space: nowrap; }
-    .blade-mark { position: relative; display: inline-block; width: 1.75rem; height: 1.6rem; transform: skewX(-11deg); }
-    .blade-mark i, .blade-mark b { position: absolute; display: block; background: var(--blade-electric); }
-    .blade-mark i { inset: 0.05rem 0.75rem 0.55rem 0.05rem; clip-path: polygon(38% 0,100% 0,62% 100%,0 100%); }
-    .blade-mark b { inset: 0.55rem 0.05rem 0.05rem 0.75rem; clip-path: polygon(38% 0,100% 0,62% 100%,0 100%); opacity: .66; }
-    .wordmark { display: flex; align-items: baseline; gap: 0.28rem; letter-spacing: 0; }
-    .wordmark strong { font-size: .95rem; font-weight: 780; }
+    .site-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--blade-ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .blade-mark {
+      width: 0.38rem;
+      height: 1.05rem;
+      border-radius: 1px;
+      background: var(--blade-ink);
+    }
+    .wordmark {
+      font-family: var(--sl-font-heading);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
   }
 </style>
