@@ -168,7 +168,7 @@ header.header {
   --sl-content-width: 62rem;
 }
 
-/* Home: three quiet intents */
+/* Home: four quiet intents */
 .intent-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
