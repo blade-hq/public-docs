@@ -1,5 +1,5 @@
 ---
-title: 文档总览
+title: 架构与边界
 description: Blade Agent 的系统边界、服务关系、端口、数据流和阅读路径。
 contentType: docs
 appliesTo: ">=2608.0.0"
@@ -69,6 +69,7 @@ Blade Agent 能执行命令和网页操作，但不能把外部系统的不确�
 ## 推荐阅读路径
 
 - 第一次部署：[Docker 部署](../../ops/docker/) → [快速开始](../../guide/getting-started/)
+- 已经在用：[Blade OS 桌面](../../guide/blade-os/) → [对话与交互](../../guide/chat/)
 - 应用接入：[接入核心概念](../../integration/concepts/) → [React](../../integration/frontend/react/) 或 [Python](../../integration/backend/python/)
 - 智能体开发：[智能体开发核心概念](../../agent-dev/concepts/) → [目录结构与 manifest](../../agent-dev/solution/structure/) → [SKILL.md 规范](../../agent-dev/skill/skill-md/)
 - 生产运维：[环境变量](../../ops/env/) → [安全与数据边界](../../ops/security/) → [监控与观测](../../ops/monitoring/)

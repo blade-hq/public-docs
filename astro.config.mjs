@@ -9,6 +9,10 @@ const base = process.env.BASE_PATH || '/public-docs';
 export default defineConfig({
   site,
   base,
+  redirects: {
+    '/docs/overview': `${base.replace(/\/$/, '')}/ops/architecture/`,
+    '/docs/overview/': `${base.replace(/\/$/, '')}/ops/architecture/`,
+  },
   markdown: {
     rehypePlugins: [[rewritePublicAssets, { base }]],
   },
@@ -47,17 +51,18 @@ export default defineConfig({
         {
           label: '开始使用',
           items: [
-            { label: '文档总览', slug: 'docs/overview' },
             { label: '快速开始', slug: 'guide/getting-started' },
             { label: 'Blade OS 桌面', slug: 'guide/blade-os' },
-            { label: '选择解决方案与角色', slug: 'guide/solutions-and-roles' },
-            { label: '云电脑', slug: 'guide/cloud-computer' },
-            { label: '软件工厂', slug: 'guide/factory' },
-            { label: '技能编辑', slug: 'guide/skill-editor' },
+          ],
+        },
+        {
+          label: '使用手册',
+          items: [
             {
               label: '智能助手',
               collapsed: false,
               items: [
+                { label: '选择解决方案与角色', slug: 'guide/solutions-and-roles' },
                 { label: '对话与交互', slug: 'guide/chat' },
                 { label: '会话管理', slug: 'guide/sessions' },
                 { label: '记忆功能', slug: 'guide/memory' },
@@ -65,6 +70,9 @@ export default defineConfig({
                 { label: '浏览器插件', slug: 'guide/browser-extension' },
               ],
             },
+            { label: '云电脑', slug: 'guide/cloud-computer' },
+            { label: '软件工厂', slug: 'guide/factory' },
+            { label: '技能编辑器', slug: 'guide/skill-editor' },
           ],
         },
         {
@@ -141,6 +149,7 @@ export default defineConfig({
         {
           label: '部署与运维',
           items: [
+            { label: '架构与边界', slug: 'ops/architecture' },
             { label: 'Docker 部署', slug: 'ops/docker' },
             { label: 'Blade OAuth', slug: 'ops/oauth' },
             { label: 'LLM Gateway 配置', slug: 'ops/llm-gateway' },

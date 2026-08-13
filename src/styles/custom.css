@@ -171,7 +171,7 @@ header.header {
 /* Home: three quiet intents */
 .intent-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   margin-block: 1.75rem 3.5rem;
   border-block: 1px solid var(--blade-line);
 }
@@ -179,9 +179,11 @@ header.header {
 .intent-grid article {
   padding: 1.5rem 1.4rem 1.6rem;
   border-inline-end: 1px solid var(--blade-line);
+  border-bottom: 1px solid var(--blade-line);
 }
 
-.intent-grid article:last-child { border-inline-end: 0; }
+.intent-grid article:nth-child(2n) { border-inline-end: 0; }
+.intent-grid article:nth-last-child(-n+2) { border-bottom: 0; }
 
 .intent-grid h2 {
   margin: 0 0 .55rem;
@@ -508,10 +510,8 @@ header.header {
 
 @media (max-width: 48rem) {
   .intent-grid { grid-template-columns: 1fr; }
-  .intent-grid article {
-    border-inline-end: 0;
-    border-bottom: 1px solid var(--blade-line);
-  }
+  .intent-grid article { border-inline-end: 0; }
+  .intent-grid article:nth-last-child(-n+2) { border-bottom: 1px solid var(--blade-line); }
   .intent-grid article:last-child { border-bottom: 0; }
   .intent-grid p { min-height: auto; }
   .version-board a {

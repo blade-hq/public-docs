@@ -5,6 +5,8 @@ description: SKILL.md 编写规范的配置、使用步骤、接口行为和排�
 
 `SKILL.md` 是技能的核心定义文件，智能体通过它理解技能的用途和使用方法。
 
+如果只是在桌面里用资料或对话生成技能，走[技能编辑器](../../guide/skill-editor/)，不必先读这份格式。
+
 ## frontmatter 格式
 
 文件顶部必须包含 YAML frontmatter，定义技能的元数据：
