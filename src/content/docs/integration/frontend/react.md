@@ -5,12 +5,12 @@ title: "React 接入"
 # React 接入
 
 :::note 完整示例工程
-[下载 examples-react.zip](/public-docs/downloads/examples-react.zip) — Vite + React 19 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
+[下载 examples-react.zip](../../../downloads/examples-react.zip) — Vite + React 19 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
 :::
 
 ## 安装与依赖
 
-版本号需和 Blade Agent 后端一致（[如何查看](/public-docs/integration/concepts/#快速开始)）：
+版本号需和 Blade Agent 后端一致（[如何查看](../../concepts/#快速开始)）：
 
 ```bash
 # 将 <version> 替换为后端版本号，如 1.0.10

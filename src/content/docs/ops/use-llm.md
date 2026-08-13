@@ -8,11 +8,11 @@ title: "使用盒子内的大模型"
 
 在 Blade OS 桌面的「高级设置」中，点击「模型服务网关」可以打开 Gateway 控制台：
 
-![从 Blade OS 桌面打开模型服务网关](/public-docs/images/llm-gateway-entry.png)
+<img src="../../images/llm-gateway-entry.png" alt="从 Blade OS 桌面打开模型服务网关">
 
 控制台的「模型」页签可以查看可用模型列表和调用方式示例：
 
-![Gateway 控制台 — 模型名称与调用方式](/public-docs/images/llm-gateway-console.png)
+<img src="../../images/llm-gateway-console.png" alt="Gateway 控制台 — 模型名称与调用方式">
 
 ## 接口信息
 

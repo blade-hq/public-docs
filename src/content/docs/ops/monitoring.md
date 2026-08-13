@@ -30,4 +30,4 @@ Grafana 运行在 `http://<host>:3000`，提供监控仪表盘的可视化展示
 - 请求成功率和错误分布
 - 响应延迟统计
 
-如需更详细的 LLM 调用追踪，可配置 Langfuse 或 Helicone 作为 tracing 后端，参见[环境变量参考](/public-docs/ops/env/)中的可观测性章节。
+如需更详细的 LLM 调用追踪，可配置 Langfuse 或 Helicone 作为 tracing 后端，参见[环境变量参考](../env/)中的可观测性章节。

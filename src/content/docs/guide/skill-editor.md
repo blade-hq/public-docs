@@ -24,9 +24,9 @@ title: "技能编辑"
 
 如果你已经知道要沉淀哪类工作，可以在技能编辑器中直接开始。上传任务说明、模板、样例或流程文档后，点击「开始创建」，AI 会先理解资料，再与你确认目标、输入、输出和关键规则。
 
-![主动编辑位置示意图](/public-docs/images/skill-editor/active-edit-position.png)
+<img src="../../images/skill-editor/active-edit-position.png" alt="主动编辑位置示意图">
 
-<video src="/public-docs/images/skill-editor/active-edit-meeting-notes.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
+<video src="../../images/skill-editor/active-edit-meeting-notes.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
 
 推荐流程：
 
@@ -42,9 +42,9 @@ title: "技能编辑"
 
 如果你刚刚和智能体完成了一次任务，也可以把这次协作总结成技能。比如完成一次合同风险分析后，让 AI 提取其中可复用的检查清单、判断顺序和输出格式，下次遇到同类合同就能直接复用。
 
-![对话总结位置示意图](/public-docs/images/skill-editor/chat-summary-position.png)
+<img src="../../images/skill-editor/chat-summary-position.png" alt="对话总结位置示意图">
 
-<video src="/public-docs/images/skill-editor/chat-summary-contract-risk.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
+<video src="../../images/skill-editor/chat-summary-contract-risk.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
 
 推荐说法：
 

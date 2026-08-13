@@ -28,6 +28,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        env:
+          SITE_URL: https://blade-hq.github.io
+          BASE_PATH: /public-docs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -25,7 +25,7 @@ title: "快速开始"
 
 登录成功后，自动进入 Blade OS 浏览器桌面。桌面是你使用所有功能的起点。
 
-![Blade OS 桌面](/public-docs/images/blade-os-desktop.png)
+<img src="../../images/blade-os-desktop.png" alt="Blade OS 桌面">
 
 ## 发起第一次对话
 
@@ -35,4 +35,4 @@ title: "快速开始"
 
 智能体收到问题后会自动开始工作：查询内置数据库，深入分析数据，连续执行多个工具调用，最终给出有依据的结论。整个过程你可以实时看到智能体的思考和操作。
 
-<video src="/public-docs/images/first-chat-demo.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
+<video src="../../images/first-chat-demo.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>

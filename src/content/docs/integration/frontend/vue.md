@@ -5,14 +5,14 @@ title: "Vue 接入"
 # Vue 接入
 
 :::note 完整示例工程
-[下载 examples-vue.zip](/public-docs/downloads/examples-vue.zip) — Vite + Vue 3 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
+[下载 examples-vue.zip](../../../downloads/examples-vue.zip) — Vite + Vue 3 可运行工程，填好 `.env.local` 即可 `pnpm dev`。
 :::
 
 Vue 不能直接使用 `ChatView`（React 组件），需要用 `@blade-hq/agent-kit/client` 和底层 Socket.IO 自行渲染。
 
 ## 安装与依赖
 
-版本号需和 Blade Agent 后端一致（[如何查看](/public-docs/integration/concepts/#快速开始)）：
+版本号需和 Blade Agent 后端一致（[如何查看](../../concepts/#快速开始)）：
 
 ```bash
 # 将 <version> 替换为后端版本号，如 1.0.10

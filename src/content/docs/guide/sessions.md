@@ -22,26 +22,26 @@ title: "会话管理"
 │  [ 导入 ]  [ 导出 ]             │  <-- 导入/导出按钮
 └─────────────────────────────────┘
 ```
-![图片附件](/public-docs/images/sessions.png)
+<img src="../../images/sessions.png" alt="图片附件">
 
 ## 置顶与搜索
 
 - **置顶**：右键点击会话或使用菜单，可将重要会话置顶。置顶会话始终显示在列表顶部，方便快速访问。
-![图片附件](/public-docs/images/sessions-pin.png)
+<img src="../../images/sessions-pin.png" alt="图片附件">
 - **搜索**：在列表顶部的搜索框中输入关键词，快速定位目标会话。
-![图片附件](/public-docs/images/sessions-search.png)
+<img src="../../images/sessions-search.png" alt="图片附件">
 
 ## 导入与导出
 
 - **导出**：将单个会话导出为文件，方便备份或分享给他人。
-![图片附件](/public-docs/images/sessions-export.png)
+<img src="../../images/sessions-export.png" alt="图片附件">
 - **导入**：从导出的文件中恢复会话，支持单个导入和批量导入。
-![图片附件](/public-docs/images/sessions-import.png)
+<img src="../../images/sessions-import.png" alt="图片附件">
 
 ## 删除会话
 
 在会话列表中，右键点击或使用菜单选择删除，即可移除不再需要的会话。删除后不可恢复，请谨慎操作。
-![图片附件](/public-docs/images/sessions-delete.png)
+<img src="../../images/sessions-delete.png" alt="图片附件">
 
 ## 自动标题
 

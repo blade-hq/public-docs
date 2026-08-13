@@ -9,7 +9,7 @@ title: "核心概念"
 :::note SDK 版本必须和后端版本一致
 安装 SDK 时，版本号要和 Blade Agent 后端版本对应。后端版本号在 Web UI 左上角 logo 旁查看：
 
-![后端版本号位置](/public-docs/images/ba-version-location.png)
+<img src="../../images/ba-version-location.png" alt="后端版本号位置">
 
 例如后端是 `v1.0.10`，前端 SDK 就装 `@blade-hq/agent-kit@1.0.10`，Python SDK 就装 `blade-agent-kit==1.0.10`。
 :::
@@ -18,9 +18,9 @@ title: "核心概念"
 
 | 示例 | 下载 | 说明 |
 |------|------|------|
-| React | [examples-react.zip](/public-docs/downloads/examples-react.zip) | Vite + React 19，内置 ChatView |
-| Vue | [examples-vue.zip](/public-docs/downloads/examples-vue.zip) | Vite + Vue 3，使用 /client 自建 UI |
-| Python | [examples-python.zip](/public-docs/downloads/examples-python.zip) | 异步脚本：流式对话、Headless、文件上传 |
+| React | [examples-react.zip](../../downloads/examples-react.zip) | Vite + React 19，内置 ChatView |
+| Vue | [examples-vue.zip](../../downloads/examples-vue.zip) | Vite + Vue 3，使用 /client 自建 UI |
+| Python | [examples-python.zip](../../downloads/examples-python.zip) | 异步脚本：流式对话、Headless、文件上传 |
 
 下载后参照 `.env.example` 配置后端地址和 API Token，然后 `pnpm install && pnpm dev`（前端）或 `pip install -r requirements.txt && python quickstart.py`（Python）。
 

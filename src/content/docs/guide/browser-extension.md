@@ -7,7 +7,7 @@ title: "浏览器插件远程控制"
 ## 什么是浏览器插件
 
 安装「Blade 浏览器助手」Chrome 扩展后，智能体可以远程操作你当前浏览的网页。你只需在对话中描述要做什么，智能体会直接在你的浏览器中执行操作。
-<video src="/public-docs/images/browser-extension-demo.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
+<video src="../../images/browser-extension-demo.mp4" controls autoplay loop muted playsinline style="width:100%;border-radius:8px;margin-top:16px"></video>
 
 ## 安装方式
 
