@@ -3,8 +3,8 @@ title: 点击成功不等于任务完成
 description: Blade Agent 的浏览器 CLI 为什么在操作后继续核对新标签、URL、表单值和页面内容。
 contentType: blog-post
 date: 2026-08-13
-author: Blade Agent 浏览器团队
-role: 浏览器自动化
+author: Boiled-Water-zy
+role: Chrome CLI 维护者
 summary: chrome-cli 不把“命令没有报错”当成成功；点击之后，它还要判断页面是否真的发生了预期变化。
 tags: [工程, 浏览器]
 versions: ["2608.0.4", "2610.0.0-beta.1"]
@@ -14,7 +14,7 @@ sidebar:
 
 import ArticleMeta from '../../../components/ArticleMeta.astro';
 
-<ArticleMeta date={new Date('2026-08-13')} author="Blade Agent 浏览器团队" role="浏览器自动化" tags={['工程', '浏览器']} versions={['2608.0.4', '2610.0.0-beta.1']} minutes={4} />
+<ArticleMeta slug="blog/introducing-blade-agent" />
 
 <p class="article-deck">网页自动化里最危险的假成功，是点击命令正常退出，但业务状态根本没变。我们宁可多花几秒核对，也不让智能体在错误前提上继续往下做。</p>
 
