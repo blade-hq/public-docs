@@ -1,0 +1,52 @@
+:root {
+  --sl-content-width: 58rem;
+  --sl-text-5xl: 3.5rem;
+}
+
+.hero {
+  padding-block: clamp(3rem, 9vw, 7rem);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.docs-card {
+  display: block;
+  height: 100%;
+  padding: 1.25rem;
+  color: var(--sl-color-white) !important;
+  text-decoration: none;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.8rem;
+  background: linear-gradient(145deg, var(--sl-color-gray-6), var(--sl-color-black));
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.docs-card:hover {
+  border-color: var(--sl-color-accent-high);
+  transform: translateY(-2px);
+}
+
+.docs-card strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.docs-card span {
+  color: var(--sl-color-gray-2);
+  line-height: 1.6;
+}
+
+.sl-markdown-content video {
+  max-width: 100%;
+  height: auto;
+}
+
+.sl-markdown-content table {
+  font-size: 0.95rem;
+}
