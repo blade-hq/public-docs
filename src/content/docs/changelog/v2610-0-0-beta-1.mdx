@@ -1,0 +1,42 @@
+---
+title: v2610.0.0-beta.1
+description: 软件工厂模板接入用户体系，全局搜索、用户偏好和轻量渲染。
+sidebar:
+  hidden: true
+---
+
+<div class="release-heading"><span class="release-badge beta">BETA</span><time>2026.08.13</time></div>
+
+<p class="article-deck">这次 beta 把软件工厂模板放进真实的用户体系里，也补上了搜索、偏好上下文和产品效果反馈。</p>
+
+## 软件工厂模板开始识别用户
+
+模板列表、详情、素材和下载请求现在会透传当前用户身份。模板地址从单段 ID 改为 `<owner>/<slug>`，前端路由和侧边栏搜索一起调整。
+
+:::caution 必须同步升级 Blade Hub
+这是破坏性变更，没有兼容窗口。部署该版本前，Blade Hub 必须包含对应的模板用户空间改动；否则详情、素材或下载会出现 404。`presets.yaml` 也需要声明模板组织及 `repo_prefix: template--`。
+:::
+
+<img class="article-shot" src="../../images/releases/v2610.0.0-beta.0/software-factory.png" alt="软件工厂模板和项目创建入口" />
+
+## 搜索不再局限于当前页面
+
+新增用户级全局搜索，可以从一个入口查找会话、项目和相关内容。用户身份与工作偏好也会进入上下文，使同一个智能体在不同账号下采用各自的设置。
+
+## 更轻的会话渲染
+
+会话新增轻量渲染模式，长对话不必一次挂载全部历史内容。成果汇总也重新整理，任务结束后的文件和网址更容易找到。
+
+## 浏览器与统计
+
+- 浏览器手动模式会避让自动操作；标签页闲置后冻结，CLI 也可以主动关闭浏览器释放资源。
+- Chrome CLI 的历史前进、后退不再依赖页面导航事件。
+- 已发布应用加入轻量访问统计，Blade Agent 界面增加效果反馈入口。
+
+## 升级前检查
+
+1. 先部署带模板用户空间改动的 Blade Hub。
+2. 确认模板仓库采用 `<owner>/<slug>` 两段 ID。
+3. 再升级 Blade Agent 镜像与同版本 SDK。
+
+[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2610.0.0-beta.1)

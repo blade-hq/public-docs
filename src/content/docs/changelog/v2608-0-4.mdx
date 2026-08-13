@@ -1,0 +1,26 @@
+---
+title: v2608.0.4
+description: Chrome CLI 增加上传、下载、悬停和后退，改善浏览器与软件工厂体验。
+sidebar:
+  hidden: true
+---
+
+<div class="release-heading"><span class="release-badge stable">正式版</span><time>2026.08.12</time></div>
+
+<p class="article-deck">这一版把浏览器自动化里几个一直需要绕路的动作补齐了：上传文件、接住下载、悬停菜单和历史后退。</p>
+
+## Chrome CLI 补齐常用动作
+
+智能体现在可以直接操作文件上传控件，在点击后接住浏览器下载，悬停展开菜单，并可靠地前进或后退。`--confirm` 的行为也写进帮助信息，涉及网页确认框时更容易判断后果。
+
+## 录屏和预览修复
+
+- 浏览器录屏去掉黑边，并显示当前录制状态。
+- 软件工厂 AgentBoard 流式编辑时不再反复抢占预览页签焦点。
+- 模型目录补上直连模型服务需要的模型名。
+
+## 升级
+
+没有新增必须调整的配置或协议。主应用镜像、JavaScript SDK 和 Python SDK 使用同一版本号 `2608.0.4`；需要恢复时切回 `v2608.0.3`。
+
+[查看 GitHub Release](https://github.com/blade-hq/blade-agent/releases/tag/v2608.0.4)

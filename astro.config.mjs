@@ -10,9 +10,13 @@ export default defineConfig({
   base,
   integrations: [
     starlight({
-      title: 'Blade OS 帮助文档',
-      description: 'Blade OS 使用、智能体开发、应用接入与部署运维文档',
+      title: 'Blade Agent',
+      description: 'Blade Agent 使用文档、更新日志与产品 Blog',
       customCss: ['./src/styles/custom.css'],
+      components: {
+        Header: './src/components/Header.astro',
+        SiteTitle: './src/components/SiteTitle.astro',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/blade-hq/public-docs' },
       ],
