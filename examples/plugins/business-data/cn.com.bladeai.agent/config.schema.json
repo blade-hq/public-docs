@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "业务数据演示配置",
+  "description": "这是本地演示，不连接真实业务系统。演示令牌填写 demo-token，请勿填写真实凭据。",
+  "type": "object",
+  "required": ["token", "default_dataset"],
+  "additionalProperties": false,
+  "properties": {
+    "token": {
+      "type": "string",
+      "title": "演示令牌",
+      "description": "填写 demo-token；该值仅演示配置读取，不提供真实身份认证。",
+      "minLength": 1,
+      "writeOnly": true
+    },
+    "default_dataset": {
+      "type": "string",
+      "title": "默认数据集",
+      "enum": ["sales", "inventory"],
+      "default": "sales"
+    }
+  }
+}

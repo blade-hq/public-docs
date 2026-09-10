@@ -82,6 +82,19 @@ export default defineConfig({
           items: [
             { label: '智能体开发核心概念', slug: 'agent-dev/concepts' },
             {
+              label: '插件开发',
+              items: [
+                { label: '插件开发概览', slug: 'agent-dev/plugin/overview' },
+                { label: '开发第一个插件', slug: 'agent-dev/plugin/quickstart' },
+                { label: '插件目录与清单', slug: 'agent-dev/plugin/structure' },
+                { label: '为插件编写 Skill', slug: 'agent-dev/plugin/skills' },
+                { label: '接入 MCP 工具', slug: 'agent-dev/plugin/mcp' },
+                { label: '用户配置与账号认证', slug: 'agent-dev/plugin/configuration' },
+                { label: '使用 MCP Apps 提供交互界面', slug: 'agent-dev/plugin/apps' },
+                { label: '发布、安装与版本更新', slug: 'agent-dev/plugin/publish' },
+              ],
+            },
+            {
               label: '解决方案开发',
               items: [
                 { label: '目录结构与 manifest', slug: 'agent-dev/solution/structure' },
