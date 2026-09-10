@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import mermaid from 'astro-mermaid';
 import starlightLinksValidator from 'starlight-links-validator';
 import rewritePublicAssets from './src/plugins/rewrite-public-assets.mjs';
 
@@ -17,6 +18,7 @@ export default defineConfig({
     rehypePlugins: [[rewritePublicAssets, { base }]],
   },
   integrations: [
+    mermaid({ enableLog: false }),
     starlight({
       title: 'Blade Agent 文档',
       description: 'Blade Agent 的使用、开发、接入、部署文档，以及版本更新和工程文章。',
