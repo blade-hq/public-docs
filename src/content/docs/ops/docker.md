@@ -15,9 +15,9 @@ graph TD
     G[PostgreSQL] --> A
     H[Docker Engine] --> C
 
-    style A fill:#f9d,stroke:#333
-    style C fill:#9df,stroke:#333
-    style D fill:#9fd,stroke:#333
+    style A fill:#f9d,stroke:#333,color:#222
+    style C fill:#9df,stroke:#333,color:#222
+    style D fill:#9fd,stroke:#333,color:#222
 ```
 
 ## 启动顺序
