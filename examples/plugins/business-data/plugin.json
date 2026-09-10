@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "business-data",
+  "version": "1.0.0",
+  "description": "业务数据查询完整示例：演示配置、技能、MCP 工具与数据选择卡片",
+  "extensions": {
+    "cn.com.bladeai.agent": {
+      "display_name": "业务数据"
+    }
+  }
+}
