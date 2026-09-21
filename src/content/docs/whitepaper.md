@@ -34,16 +34,16 @@ Blade Agent 平台是一套面向企业业务人员的智能体工作平台。�
 
 ```mermaid
 graph LR
-  U[浏览器] --> OS[Blade OS 桌面 :80]
+  U[浏览器] --> OS[Blade OS 桌面]
   U --> BA
-  OS -->|智能助手 / 软件工厂 / 技能开发| BA[Blade Agent :8020]
-  OS -->|能力中心| HUB[Blade Hub :8010]
+  OS -->|智能助手 / 软件工厂 / 技能开发| BA[Blade Agent]
+  OS -->|能力中心| HUB[Blade Hub]
   OS --> APPS[发布出来的业务应用]
   BA --> SB[会话沙盒]
-  BA --> LLM[模型服务 / LLM Gateway :30000]
-  BA --> OAUTH[Blade OAuth :19000]
+  BA --> LLM[模型服务 / LLM Gateway]
+  BA --> OAUTH[Blade OAuth]
   BA --> HUB
-  BA --> GIT[Gitea :30030]
+  BA --> GIT[Gitea]
   HUB --> GIT
   HUB -->|解决方案一键部署| OS
   OS --> OAUTH
