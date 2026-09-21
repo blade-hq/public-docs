@@ -92,9 +92,7 @@ graph LR
 
 **云电脑**：沙盒默认在会话结束后清理临时内容；「云电脑」模式让用户的沙盒持久化，安装的软件和文件长期保留，适合长期项目。
 
-<img src="../images/whitepaper/ba-session-preview.jpg" alt="一次真实会话：智能体生成销售数据 Excel、趋势图和 HTML 报告，右侧预览区实时渲染">
-
-<img src="../images/whitepaper/ba-session-steps.jpg" alt="展开执行步骤：写入文件、生成 Excel 与趋势图，每一步耗时可见；顶部显示本次参考了 6 条历史经验">
+<img src="../images/whitepaper/ba-session-steps.jpg" alt="一次真实会话：智能体生成销售数据 Excel、趋势图和 HTML 报告，左侧可展开每一步执行记录，右侧预览区实时渲染">
 
 > 场景：财务月度对账。上传银行流水与账务导出表，智能体在沙盒里完成清洗、匹配、差异标注，输出带批注的 Excel 与一页差异摘要。
 
