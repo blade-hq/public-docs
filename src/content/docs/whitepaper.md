@@ -205,17 +205,21 @@ Blade Agent 采用清晰的分层结构，每一层只依赖下一层：
 
 ```mermaid
 graph TB
-  WEB[Web 前端 · React 19<br/>与对外 SDK 共用数据层]
-  GW[Go 网关<br/>鉴权 · 准入 · 限流 · License · 指标<br/>高频读路径在 Go 内完成]
-  SRV[server · 传输与投影层<br/>REST（FastAPI）+ 实时通道（Socket.IO）]
-  HOST[host · 全部具体实现<br/>执行 · 会话 · 模型 · 技能 · 工具 · 编排 · 投影 · 记忆 · 沙盒 · 解决方案]
-  CORE[core · 协议定义 + 智能体循环<br/>纯函数，无外部依赖]
-  WEB <--> GW
-  GW <--> SRV
-  SRV --> HOST
-  HOST --> CORE
-  HOST --> SB[会话沙盒<br/>blade CLI · browserd · appmirrord]
+  WEB[Web 前端] <--> GW[Go 网关]
+  GW <--> SRV[server 传输层]
+  SRV --> HOST[host 实现层]
+  HOST --> CORE[core 协议层]
+  HOST --> SB[会话沙盒]
 ```
+
+| 层 | 职责 |
+|---|---|
+| Web 前端 | React 19，与对外 SDK 共用同一套数据层 |
+| Go 网关 | 公网入口：鉴权、准入、限流、License、指标；会话历史、工作区文件、分享、搜索等高频读路径在 Go 内完成，其余转发 Python |
+| server 传输层 | REST（FastAPI）+ 实时通道（Socket.IO），把运行时事件投影为前端可渲染的结构 |
+| host 实现层 | 全部具体实现：执行、会话、模型、技能、工具、编排、投影、记忆、沙盒、解决方案 |
+| core 协议层 | 协议定义 + 智能体循环，纯函数，无外部依赖 |
+| 会话沙盒 | 智能体的执行环境，内含 `blade` 命令行、`browserd`、`appmirrord` |
 
 沙盒内有三个 Go 组件：`blade` 命令行（智能体在沙盒里通过它调用平台能力，27 个命令组）、`browserd`（浏览器画面镜像）、`appmirrord`（任意 GUI 软件镜像）。它们不映射宿主端口，仅容器网络内可达，鉴权由后端代理负责。
 
