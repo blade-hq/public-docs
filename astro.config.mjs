@@ -53,6 +53,7 @@ export default defineConfig({
         {
           label: '开始使用',
           items: [
+            { label: '产品白皮书', slug: 'whitepaper' },
             { label: '快速开始', slug: 'guide/getting-started' },
             { label: 'Blade OS 桌面', slug: 'guide/blade-os' },
           ],

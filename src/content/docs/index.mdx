@@ -14,7 +14,7 @@ import LatestVersions from '../../components/LatestVersions.astro';
 
 Blade Agent 是一个可私有化部署的智能体运行时。它在沙箱里执行命令、驱动浏览器、调用已注册的技能，并通过 REST 与 Socket.IO 把会话、文件和工具能力开放给其他应用。
 
-这套文档说明怎么部署和使用 Blade Agent，也覆盖智能体开发、SDK 接入、接口参考与运维。想了解设计取舍，请看 [Blog](./blog/)；想判断是否该升级，请看 [更新日志](./changelog/)。
+这套文档说明怎么部署和使用 Blade Agent，也覆盖智能体开发、SDK 接入、接口参考与运维。想先了解产品全貌、三个产品的分工和技术架构，请看 [产品白皮书](./whitepaper/)；想了解设计取舍，请看 [Blog](./blog/)；想判断是否该升级，请看 [更新日志](./changelog/)。
 
 ## 当前版本
 
@@ -51,4 +51,4 @@ Blade Agent 是一个可私有化部署的智能体运行时。它在沙箱里�
 
 ## 评估部署前先看
 
-[架构与端口](./ops/architecture/#架构与端口)列出了 Blade OS、Blade Agent、Blade OAuth、Skill Registry、LLM Gateway、Gitea 和沙箱之间的关系；[能力边界](./ops/architecture/#能力边界)说明哪些事情仍需人工确认，哪些能力取决于外部系统。
+[产品白皮书](./whitepaper/)一页讲清 Blade OS、Blade Agent、能力中心各自负责什么、核心能力、部署形态与安全边界，适合决策人和架构师对齐颗粒度。[架构与端口](./ops/architecture/#架构与端口)列出了 Blade OS、Blade Agent、Blade OAuth、Skill Registry、LLM Gateway、Gitea 和沙箱之间的关系；[能力边界](./ops/architecture/#能力边界)说明哪些事情仍需人工确认，哪些能力取决于外部系统。
