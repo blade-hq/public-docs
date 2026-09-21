@@ -208,7 +208,7 @@ Blade Agent 采用清晰的分层结构，每一层只依赖下一层：
 ```mermaid
 graph TB
   WEB[Web 前端 · React 19<br/>与对外 SDK 共用数据层]
-  GW[Go 网关 :8020<br/>鉴权 · 准入 · 限流 · License · 指标<br/>高频读路径在 Go 内完成]
+  GW[Go 网关<br/>鉴权 · 准入 · 限流 · License · 指标<br/>高频读路径在 Go 内完成]
   SRV[server · 传输与投影层<br/>REST（FastAPI）+ 实时通道（Socket.IO）]
   HOST[host · 全部具体实现<br/>执行 · 会话 · 模型 · 技能 · 工具 · 编排 · 投影 · 记忆 · 沙盒 · 解决方案]
   CORE[core · 协议定义 + 智能体循环<br/>纯函数，无外部依赖]
