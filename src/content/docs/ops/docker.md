@@ -7,7 +7,7 @@ description: Docker 部署的配置、使用步骤、接口行为和排查说明
 
 ```mermaid
 graph TD
-    A[Blade OAuth / Casdoor] --> C[blade-agent]
+    A[Blade OAuth（兼容 Casdoor 接口）] --> C[blade-agent]
     B[Skill Registry] --> C
     C --> D[Blade OS]
     E[LLM Gateway] --> C
@@ -32,11 +32,16 @@ graph TD
 | 4 | Blade OS | 80 | `http://<host>` |
 | 5 | LLM Gateway | 30000 | `http://<host>:30000` |
 | 6 | Gitea | 30030 | `http://<host>:30030` |
-| 7 | Mock Center | 30023 | `http://<host>:30023` |
+| 7 | Mock Center | 30023 | `http://<host>:30023`（可选，仅演示/联调需要） |
 
 ## Docker Compose 配置要点
 
 ### Casdoor 认证服务
+
+Blade OAuth 已替代早期的 Casdoor，作为平台统一认证服务，默认端口为 **19000**（见启动顺序表）。
+下面的 Casdoor 容器配置仅用于需要兼容旧 Casdoor 接口或已有 Casdoor 数据的场景，
+其宿主端口 `9000` 与 Blade OAuth 的 `19000` 是两套不同的端口，不要混用。
+新部署请直接使用 Blade OAuth，并参照 [Blade OAuth 配置](../oauth/)。
 
 ```yaml
 services:
@@ -72,7 +77,7 @@ services:
   llm-gateway:
     image: ghcr.io/blade-hq/llm-gateway:latest
     ports:
-      - "29999:29999"
+      - "30000:30000"
     volumes:
       - ./config:/app/config
 ```
@@ -84,7 +89,8 @@ services:
 | blade-agent | `GET /api/health` | `{"status": "ok"}` |
 | blade-agent | `GET /healthz` | `{"status": "ok"}` |
 | LLM Gateway | `GET /health` | `{"ok": true, "sources": [...]}` |
-| Casdoor | `GET /api/health` | HTTP 200 |
+| Blade OAuth | `GET /api/health` | HTTP 200 |
+| Casdoor（仅旧版兼容部署） | `GET /api/health` | HTTP 200 |
 
 Docker Compose 健康检查示例：
 
