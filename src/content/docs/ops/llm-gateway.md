@@ -5,7 +5,7 @@ description: LLM Gateway 配置的配置、使用步骤、接口行为和排查�
 
 LLM Gateway 是统一网关，为内网散落的 LLM 上游（vLLM、sglang、OpenAI 兼容服务等）提供单一入口，同时暴露 OpenAI (`/v1/chat/completions`) 和 Anthropic (`/v1/messages`) 两套协议。
 
-默认运行在 `http://<host>:30000`。
+默认运行在 `http://<host>:30000`（容器内监听 30000，宿主端口映射也用 30000）。
 
 ## 上游配置
 
